@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Car Affordability Calculator | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.calc-container{max-width:800px;margin:2rem auto 4rem;padding:0 2rem}
+.calc-container h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.3rem);letter-spacing:-1px;margin-bottom:.5rem}
+.subtitle{color:var(--dim);font-size:1rem;margin-bottom:2.5rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.input-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+.input-section h2{font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
+.field{margin-bottom:1.25rem}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:.82rem;font-weight:500;color:var(--dim);margin-bottom:.35rem}
+.field input,.field select{width:100%;padding:.65rem .85rem;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);transition:border-color .2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field select option{background:var(--bg-card);color:var(--text)}
+.results-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem}
+.results-section h2{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem;color:var(--dim)}
+.result-big{font-family:'Space Mono',monospace;font-weight:700;font-size:2.8rem;letter-spacing:-1.5px;margin-bottom:.25rem;color:var(--green)}
+.result-label{font-size:.82rem;color:var(--dim);margin-bottom:1.75rem}
+.result-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
+.result-row:last-child{border-bottom:none}
+.result-row .label{color:var(--dim)}
+.result-row .value{font-weight:700;font-family:'Space Mono',monospace;color:var(--text)}
+.verdict{margin-top:1.5rem;padding:1rem 1.25rem;border-radius:8px;font-size:.88rem;font-weight:500}
+.verdict-good{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.verdict-warn{background:rgba(255,107,53,.1);color:var(--accent);border:1px solid rgba(255,107,53,.2)}
+.verdict-bad{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+.cta-link{display:inline-block;margin-top:2rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+@media(max-width:700px){.calc-grid{grid-template-columns:1fr}}
+</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="calc-container">
+    <h1>Car Affordability Calculator</h1>
+    <p class="subtitle">Most calculators only show your payment. This one shows the <strong>real monthly cost</strong> — including insurance, gas, maintenance, and depreciation.</p>
+    <div class="calc-grid">
+        <div>
+            <div class="input-section" style="margin-bottom:1.25rem">
+                <h2>Your Income</h2>
+                <div class="field"><label>Annual take-home pay (after taxes)</label><input type="text" id="income" value="50,000" inputmode="numeric"></div>
+            </div>
+            <div class="input-section" style="margin-bottom:1.25rem">
+                <h2>The Car</h2>
+                <div class="field"><label>Vehicle price</label><input type="text" id="price" value="30,000" inputmode="numeric"></div>
+                <div class="field"><label>Down payment</label><input type="text" id="down" value="5,000" inputmode="numeric"></div>
+                <div class="field"><label>Loan term</label><select id="term"><option value="36">36 months</option><option value="48">48 months</option><option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option></select></div>
+                <div class="field"><label>Interest rate (%)</label><input type="text" id="rate" value="6.5" inputmode="decimal"></div>
+            </div>
+            <div class="input-section">
+                <h2>Ownership Costs</h2>
+                <div class="field"><label>Monthly insurance</label><input type="text" id="insurance" value="180" inputmode="numeric"></div>
+                <div class="field"><label>Monthly gas / charging</label><input type="text" id="gas" value="150" inputmode="numeric"></div>
+                <div class="field"><label>Monthly maintenance (avg)</label><input type="text" id="maintenance" value="100" inputmode="numeric"></div>
+            </div>
+        </div>
+        <div class="results-section" id="results">
+            <h2>Your Real Monthly Cost</h2>
+            <div class="result-big" id="totalCost">$0</div>
+            <div class="result-label">Total cost of owning this car per month</div>
+            <div class="result-row"><span class="label">Loan payment</span><span class="value" id="rPayment">$0</span></div>
+            <div class="result-row"><span class="label">Insurance</span><span class="value" id="rInsurance">$0</span></div>
+            <div class="result-row"><span class="label">Gas / charging</span><span class="value" id="rGas">$0</span></div>
+            <div class="result-row"><span class="label">Maintenance</span><span class="value" id="rMaint">$0</span></div>
+            <div class="result-row"><span class="label">Est. depreciation</span><span class="value" id="rDeprec">$0</span></div>
+            <div class="result-row" style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)"><span class="label">% of take-home pay</span><span class="value" id="rPercent">0%</span></div>
+            <div class="verdict" id="verdict"></div>
+        </div>
+    </div>
+    <a href="/money/how-much-car-can-you-afford/" class="cta-link">← Read the full breakdown: How Much Car Can You Actually Afford?</a>
+    <p style="margin-top:2.5rem;font-size:.78rem;color:var(--dim);line-height:1.7;max-width:600px">Estimates are approximate — your actual costs will vary by vehicle, location, driving habits, and credit profile. Depreciation is averaged at 15%/year and will differ by make and model. This calculator is for educational purposes only. I'm not a financial advisor — this is just what I felt was useful based on my own experience in the car business. Always do your own research before making a purchase decision.</p>
+</div>
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer>
+<script>
+function parseNum(s){return parseFloat(s.replace(/[^0-9.\-]/g,''))||0}
+function fmt(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function calculate(){
+    var income=parseNum(document.getElementById('income').value);
+    var price=parseNum(document.getElementById('price').value);
+    var down=parseNum(document.getElementById('down').value);
+    var term=parseInt(document.getElementById('term').value);
+    var rate=parseNum(document.getElementById('rate').value)/100/12;
+    var ins=parseNum(document.getElementById('insurance').value);
+    var gas=parseNum(document.getElementById('gas').value);
+    var maint=parseNum(document.getElementById('maintenance').value);
+    var loan=Math.max(price-down,0);
+    var pmt=0;
+    if(rate>0&&loan>0){pmt=loan*(rate*Math.pow(1+rate,term))/(Math.pow(1+rate,term)-1)}else if(loan>0){pmt=loan/term}
+    var dep=(price*0.15)/12;
+    var total=pmt+ins+gas+maint+dep;
+    var mi=income/12;
+    var pct=mi>0?(total/mi)*100:0;
+    document.getElementById('totalCost').textContent=fmt(total);
+    document.getElementById('rPayment').textContent=fmt(pmt);
+    document.getElementById('rInsurance').textContent=fmt(ins);
+    document.getElementById('rGas').textContent=fmt(gas);
+    document.getElementById('rMaint').textContent=fmt(maint);
+    document.getElementById('rDeprec').textContent=fmt(dep);
+    document.getElementById('rPercent').textContent=pct.toFixed(1)+'%';
+    var v=document.getElementById('verdict');
+    if(pct<=15){v.className='verdict verdict-good';v.textContent='This car fits your budget well. Total ownership cost is under 15% of your take-home pay.'}
+    else if(pct<=25){v.className='verdict verdict-warn';v.textContent='This is a stretch. You can probably make it work, but it\'ll limit your ability to save and invest.'}
+    else{v.className='verdict verdict-bad';v.textContent='This car is too expensive for your income. You\'d be car-poor. Look at a lower price range.'}
+}
+document.querySelectorAll('input,select').forEach(function(el){el.addEventListener('input',calculate);el.addEventListener('change',calculate)});
+calculate();
+</script>
+<button class="back-top">↑</button><script src="/js/main.js"></script></body></html>

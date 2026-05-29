@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrynt — Real Decisions. Real Money. No BS.</title>
+    <meta name="description" content="Insider tips on car buying, investing, crypto, and everyday money moves. Written by someone who's actually done it.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#0C0C0E;--bg-card:#16161A;--bg-el:#1E1E23;--text:#EAEAEA;--dim:#8A8A8E;--accent:#FF6B35;--green:#34D399;--blue:#60A5FA;--purple:#A78BFA;--border:#2A2A2F;--mw:1200px}
+        body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--mw);margin:0 auto;padding:1.5rem 2rem}
+        .logo{font-family:'Space Mono',monospace;font-weight:700;font-size:1.4rem;color:var(--text);text-decoration:none;letter-spacing:-1px}
+        .logo span{color:var(--accent)}
+        .nav-links{display:flex;gap:1.75rem;list-style:none}
+        .nav-links a{text-decoration:none;color:var(--dim);font-weight:500;font-size:.85rem;letter-spacing:.3px;transition:color .25s}
+        .nav-links a:hover{color:var(--text)}
+        .hero{max-width:var(--mw);margin:4rem auto 0;padding:0 2rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;min-height:50vh}
+        .hero-text h1{font-weight:800;font-size:clamp(2.5rem,5.5vw,4rem);line-height:1.05;letter-spacing:-2px;margin-bottom:1.25rem}
+        .hero-text h1 em{font-style:normal;color:var(--accent)}
+        .hero-text p{font-size:1.1rem;color:var(--dim);max-width:480px;margin-bottom:2rem;line-height:1.7}
+        .hero-cats{display:flex;gap:.5rem;flex-wrap:wrap}
+        .cat-chip{padding:.45rem 1rem;border-radius:100px;font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--dim);transition:all .25s;letter-spacing:.3px}
+        .cat-chip:hover{border-color:var(--accent);color:var(--accent)}
+        .hero-feature{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+        .hero-feature:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(255,107,53,.1)}
+        .hero-feature::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple))}
+        .tag{font-family:'Space Mono',monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:.85rem;display:block}
+        .tag-f{color:var(--accent)}.tag-cars{color:var(--accent)}.tag-inv{color:var(--green)}.tag-cry{color:var(--blue)}.tag-mon{color:var(--purple)}.tag-tool{color:var(--green)}
+        .hero-feature h2{font-size:1.5rem;font-weight:700;line-height:1.25;letter-spacing:-.5px;margin-bottom:.75rem}
+        .hero-feature p{color:var(--dim);font-size:.92rem;line-height:1.6}
+        .hero-feature .read{display:inline-block;margin-top:1.25rem;color:var(--accent);font-weight:600;font-size:.85rem}
+        .section-bar{max-width:var(--mw);margin:4.5rem auto 1.75rem;padding:0 2rem;display:flex;align-items:center;gap:1rem}
+        .section-bar h2{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--dim);white-space:nowrap}
+        .section-bar::after{content:'';flex:1;height:1px;background:var(--border)}
+        .tool-spotlight{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem}
+        .tool-card{display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#1a1220 0%,#16161A 50%,#111a16 100%);border:1px solid var(--border);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s}
+        .tool-card:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .tool-info{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+        .tool-info h3{font-size:1.6rem;font-weight:700;letter-spacing:-.5px;margin-bottom:.75rem}
+        .tool-info p{color:var(--dim);font-size:.92rem;line-height:1.6;margin-bottom:1.25rem}
+        .tool-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.25rem;background:var(--green);color:#0C0C0E;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;width:fit-content;transition:opacity .2s}
+        .tool-btn:hover{opacity:.85}
+        .tool-preview{background:var(--bg-el);padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;color:var(--green);letter-spacing:-2px}
+        .tool-preview small{font-size:.85rem;color:var(--dim);margin-top:.25rem;letter-spacing:0}
+        .btc-strip{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem}
+        .btc-card{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;background:linear-gradient(135deg,#0f1628 0%,#16161A 100%);border:1px solid var(--border);border-radius:14px;padding:1.75rem 2rem;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
+        .btc-card:hover{transform:translateY(-2px);border-color:var(--blue)}
+        .btc-badge{font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--blue);background:rgba(96,165,250,.1);padding:.4rem .8rem;border-radius:6px;white-space:nowrap}
+        .btc-card h3{font-size:1.05rem;font-weight:600}
+        .btc-card .arrow{color:var(--blue);font-size:1.25rem}
+        .bento{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+        .bento-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+        .bento-card:hover{transform:translateY(-3px);border-color:#3A3A40}
+        .bento-card.span-2{grid-column:span 2}
+        .bento-card h3{font-size:1.15rem;font-weight:700;line-height:1.3;letter-spacing:-.3px;margin-bottom:.5rem}
+        .bento-card p{color:var(--dim);font-size:.85rem;line-height:1.6;flex-grow:1}
+        .bento-card .meta{margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.72rem;color:var(--dim);font-family:'Space Mono',monospace}
+        footer{max-width:var(--mw);margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--dim)}
+        footer a{color:var(--dim);text-decoration:none;transition:color .2s}
+        footer a:hover{color:var(--text)}
+        .fade-up{opacity:0;transform:translateY(30px);animation:fadeUp .6s ease forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+        @media(max-width:768px){.hero{grid-template-columns:1fr;min-height:auto;margin-top:2rem}.nav-links{display:none}.bento{grid-template-columns:1fr}.bento-card.span-2{grid-column:span 1}.tool-card{grid-template-columns:1fr}.tool-preview{display:none}.btc-card{grid-template-columns:1fr;gap:.75rem}.btc-badge{width:fit-content}}
+    </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script></head>
+<body>
+<div class="progress-bar"></div><nav>
+    <a href="/" class="logo">vry<span>nt</span></a>
+    <button class="menu-toggle">☰</button><ul class="nav-links">
+        <li><a href="/cars/">Car Buying</a></li>
+        <li><a href="/investing/">Investing</a></li>
+        <li><a href="/crypto/">Crypto</a></li>
+        <li><a href="/money/">Money Moves</a></li>
+        <li><a href="/tools/car-affordability-calculator/">Tools</a></li>
+        <li><a href="/about/">About</a></li>
+    </ul>
+</nav>
+<section class="hero">
+    <div class="hero-text fade-up">
+        <h1>Your money.<br><em>Your call.</em></h1>
+        <p>Insider takes on car buying, investing, crypto, and the money decisions nobody teaches you. Written by someone who's actually done it.</p>
+        <div class="hero-cats">
+            <a href="/cars/" class="cat-chip">Car Buying</a>
+            <a href="/investing/" class="cat-chip">Investing</a>
+            <a href="/crypto/" class="cat-chip">Crypto</a>
+            <a href="/money/" class="cat-chip">Money Moves</a>
+        </div>
+    </div>
+    <a href="/cars/how-dealerships-make-money/" class="hero-feature fade-up d2">
+        <span class="tag tag-f">Featured</span>
+        <h2>How Car Dealerships Actually Make Money (And Why It Matters to You)</h2>
+        <p>Most people think dealers profit on the sticker price. The reality is way more interesting — and understanding it means a smoother deal for everyone.</p>
+        <span class="read">Read article →</span>
+    </a>
+</section>
+<div class="section-bar fade-up d3"><h2>Interactive Tools</h2></div>
+<div class="tool-spotlight fade-up d3">
+    <a href="/tools/car-affordability-calculator/" class="tool-card">
+        <div class="tool-info">
+            <div class="tag tag-tool">⚙ Calculator</div>
+            <h3>Car Affordability Calculator</h3>
+            <p>Most calculators only show your loan payment. This one includes insurance, gas, maintenance, and depreciation — the real cost of owning a car.</p>
+            <span class="tool-btn">Try it now →</span>
+        </div>
+        <div class="tool-preview">$1,160<small>/mo real cost</small></div>
+    </a>
+</div>
+<div class="section-bar"><h2>Latest Snapshot</h2></div>
+<div class="btc-strip">
+    <a href="/crypto/btc-weekly-may-28-2026/" class="btc-card">
+        <span class="btc-badge">₿ BTC Weekly</span>
+        <h3>Week-to-Date Analysis — May 28, 2026: ETF outflows, Strategy pauses, derivatives stay cool</h3>
+        <span class="arrow">→</span>
+    </a>
+</div>
+<div class="section-bar"><h2>Latest Articles</h2></div>
+<div class="bento">
+    <a href="/investing/target-date-vs-index-funds/" class="bento-card span-2">
+        <span class="tag tag-inv">Investing</span>
+        <h3>Target-Date Funds vs Index Funds: Why I Switched</h3>
+        <p>I was paying 5x the fees for worse performance. Here's exactly what I moved my 401(k) into, why, and how you can do the same thing in an afternoon.</p>
+        <div class="meta">10 min read</div>
+    </a>
+    <a href="/crypto/bitcoin-sell-ladder/" class="bento-card">
+        <span class="tag tag-cry">Crypto</span>
+        <h3>How to Set Up a Bitcoin Sell Ladder</h3>
+        <p>Take profits on the way up without trying to time the top.</p>
+        <div class="meta">9 min read</div>
+    </a>
+    <a href="/cars/dealership-vs-bank-financing/" class="bento-card">
+        <span class="tag tag-cars">Car Buying</span>
+        <h3>Dealership vs Bank Financing</h3>
+        <p>The dealer's rate isn't always worse. Here's when each side wins.</p>
+        <div class="meta">7 min read</div>
+    </a>
+    <a href="/investing/open-529-before-baby-born/" class="bento-card span-2">
+        <span class="tag tag-inv">Investing</span>
+        <h3>How to Open a 529 Before Your Baby Is Born</h3>
+        <p>You don't need a Social Security number to start saving for college. Here's the trick to getting a head start before the birth certificate even exists.</p>
+        <div class="meta">6 min read</div>
+    </a>
+    <a href="/money/how-much-car-can-you-afford/" class="bento-card">
+        <span class="tag tag-mon">Money Moves</span>
+        <h3>How Much Car Can You Actually Afford?</h3>
+        <p>The real formula including what the 20/4/10 rule leaves out.</p>
+        <div class="meta">7 min read</div>
+    </a>
+    <a href="/money/credit-score-explained/" class="bento-card span-2">
+        <span class="tag tag-mon">Money Moves</span>
+        <h3>Credit Score Explained: What Actually Moves the Number</h3>
+        <p>Your credit score isn't random. Here's exactly what goes into it, what moves it up, what tanks it, and which common advice is actually wrong.</p>
+        <div class="meta">8 min read</div>
+    </a>
+</div>
+<footer>
+    <span>© 2026 Vrynt. All rights reserved.</span>
+    <div>
+        <a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a>
+    </div>
+</footer>
+<button class="back-top">↑</button><script src="/js/main.js"></script></body>
+</html>
