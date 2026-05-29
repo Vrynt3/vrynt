@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>401(k) Fee Calculator — See How Much Fees Cost You | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script>
+<style>
+.calc-wrap{max-width:800px;margin:2rem auto 4rem;padding:0 2rem}
+.calc-wrap h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.3rem);letter-spacing:-1px;margin-bottom:.5rem}
+.calc-wrap .sub{color:var(--dim);font-size:1rem;margin-bottom:2.5rem}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.input-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+.input-box h2{font-size:1rem;font-weight:700;margin-bottom:1.25rem}
+.field{margin-bottom:1.25rem}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:.82rem;font-weight:500;color:var(--dim);margin-bottom:.35rem}
+.field input{width:100%;padding:.65rem .85rem;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text)}
+.field input:focus{outline:none;border-color:var(--accent)}
+.result-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem}
+.result-box h2{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--dim);margin-bottom:1.5rem}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.compare-col{text-align:center}
+.compare-col .label{font-size:.78rem;color:var(--dim);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+.compare-col .amount{font-family:'Space Mono',monospace;font-weight:700;font-size:1.8rem;letter-spacing:-1px}
+.compare-col .amount.high{color:#f87171}
+.compare-col .amount.low{color:var(--green)}
+.diff-box{background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.2);border-radius:10px;padding:1.25rem;text-align:center;margin-bottom:1.5rem}
+.diff-box .diff-label{font-size:.78rem;color:var(--dim);margin-bottom:.35rem}
+.diff-box .diff-amount{font-family:'Space Mono',monospace;font-weight:700;font-size:2rem;color:var(--accent);letter-spacing:-1px}
+.diff-box .diff-note{font-size:.8rem;color:var(--dim);margin-top:.35rem}
+.bar-chart{margin-top:1.5rem}
+.bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.bar-label{font-size:.75rem;color:var(--dim);width:80px;text-align:right;font-family:'Space Mono',monospace;flex-shrink:0}
+.bar-track{flex:1;height:28px;background:var(--bg-el);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;transition:width .6s ease}
+.bar-fill.high{background:linear-gradient(90deg,#f87171,#dc2626)}
+.bar-fill.low{background:linear-gradient(90deg,var(--green),#059669)}
+.bar-val{font-size:.72rem;font-family:'Space Mono',monospace;color:var(--text);position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+.disclaimer{font-size:.75rem;color:var(--dim);font-style:italic;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);line-height:1.6}
+.cta-link{display:inline-block;margin-top:1.5rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+@media(max-width:700px){.calc-layout{grid-template-columns:1fr}.compare-col .amount{font-size:1.4rem}.diff-box .diff-amount{font-size:1.6rem}}
+</style></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="calc-wrap">
+    <h1>401(k) Fee Calculator</h1>
+    <p class="sub">See how much expense ratios actually cost you over time. The difference between a high-fee and low-fee fund can be <strong>six figures</strong>.</p>
+    <div class="calc-layout">
+        <div>
+            <div class="input-box" style="margin-bottom:1.25rem">
+                <h2>Your Portfolio</h2>
+                <div class="field"><label>Current 401(k) balance</label><input type="text" id="balance" value="50,000" inputmode="numeric"></div>
+                <div class="field"><label>Monthly contribution</label><input type="text" id="contribution" value="500" inputmode="numeric"></div>
+                <div class="field"><label>Expected annual return (%)</label><input type="text" id="returnRate" value="8" inputmode="decimal"></div>
+                <div class="field"><label>Years until retirement</label><input type="text" id="years" value="30" inputmode="numeric"></div>
+            </div>
+            <div class="input-box">
+                <h2>Compare Fees</h2>
+                <div class="field"><label>Current fund expense ratio (%)</label><input type="text" id="highFee" value="0.60" inputmode="decimal"></div>
+                <div class="field"><label>Low-cost index fund expense ratio (%)</label><input type="text" id="lowFee" value="0.05" inputmode="decimal"></div>
+            </div>
+        </div>
+        <div class="result-box">
+            <h2>The Fee Impact</h2>
+            <div class="compare">
+                <div class="compare-col">
+                    <div class="label">High Fee Fund</div>
+                    <div class="amount high" id="highTotal">$0</div>
+                </div>
+                <div class="compare-col">
+                    <div class="label">Low Fee Fund</div>
+                    <div class="amount low" id="lowTotal">$0</div>
+                </div>
+            </div>
+            <div class="diff-box">
+                <div class="diff-label">Money lost to fees</div>
+                <div class="diff-amount" id="feeCost">$0</div>
+                <div class="diff-note" id="feeNote"></div>
+            </div>
+            <div class="bar-chart" id="barChart"></div>
+            <p class="disclaimer">Assumes constant annual return and monthly contributions. Actual results vary. Expense ratios are deducted from returns annually. This is for educational purposes only.</p>
+            <a href="/investing/expense-ratios-explained/" class="cta-link">← Read: What Expense Ratios Are and Why They Matter</a>
+        </div>
+    </div>
+</div>
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+<script>
+function parseNum(s){return parseFloat(s.replace(/[^0-9.\-]/g,''))||0}
+function fmt(n){if(n>=1000000)return '$'+( n/1000000).toFixed(2)+'M';return '$'+Math.round(n).toLocaleString('en-US')}
+function calc(){
+    var bal=parseNum(document.getElementById('balance').value);
+    var mo=parseNum(document.getElementById('contribution').value);
+    var ret=parseNum(document.getElementById('returnRate').value)/100;
+    var yrs=parseNum(document.getElementById('years').value);
+    var hi=parseNum(document.getElementById('highFee').value)/100;
+    var lo=parseNum(document.getElementById('lowFee').value)/100;
+    var hBal=bal,lBal=bal;
+    var hRate=(1+ret-hi),lRate=(1+ret-lo);
+    var snapshots=[];
+    for(var y=1;y<=yrs;y++){
+        hBal=hBal*hRate+mo*12;
+        lBal=lBal*lRate+mo*12;
+        if(y%5===0||y===yrs)snapshots.push({year:y,high:hBal,low:lBal});
+    }
+    document.getElementById('highTotal').textContent=fmt(hBal);
+    document.getElementById('lowTotal').textContent=fmt(lBal);
+    var diff=lBal-hBal;
+    document.getElementById('feeCost').textContent=fmt(diff);
+    var pct=lBal>0?((diff/lBal)*100).toFixed(1):0;
+    document.getElementById('feeNote').textContent='That\'s '+pct+'% of your potential balance — gone to fees.';
+    var chart=document.getElementById('barChart');
+    chart.innerHTML='';
+    var maxVal=snapshots.length?snapshots[snapshots.length-1].low:1;
+    snapshots.forEach(function(s){
+        var hPct=Math.max((s.high/maxVal)*100,5);
+        var lPct=Math.max((s.low/maxVal)*100,5);
+        chart.innerHTML+='<div style="font-size:.7rem;color:var(--dim);font-family:\'Space Mono\',monospace;margin-top:.75rem;margin-bottom:.25rem">Year '+s.year+'</div>';
+        chart.innerHTML+='<div class="bar-row"><div class="bar-label" style="color:#f87171">High</div><div class="bar-track"><div class="bar-fill high" style="width:'+hPct+'%"><span class="bar-val">'+fmt(s.high)+'</span></div></div></div>';
+        chart.innerHTML+='<div class="bar-row"><div class="bar-label" style="color:var(--green)">Low</div><div class="bar-track"><div class="bar-fill low" style="width:'+lPct+'%"><span class="bar-val">'+fmt(s.low)+'</span></div></div></div>';
+    });
+}
+document.querySelectorAll('input').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc)});
+calc();
+</script>
+</body></html>
