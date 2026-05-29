@@ -84,3 +84,13 @@ nav{position:sticky;top:0;z-index:999;background:rgba(12,12,14,.92);backdrop-fil
 .author-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:1.1rem;flex-shrink:0}
 .author-info .aname{font-weight:700;font-size:.92rem;margin-bottom:.15rem}
 .author-info .abio{font-size:.8rem;color:var(--dim);line-height:1.5}
+
+/* AUTO CTA BAR */
+.article-cta{background:linear-gradient(135deg,#1a1220 0%,#16161A 50%,#111a16 100%);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2.5rem 0;text-align:center}
+.article-cta h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.article-cta p{color:var(--dim);font-size:.88rem;margin-bottom:1.25rem}
+.article-cta .cta-btn{display:inline-block;padding:.65rem 1.5rem;background:var(--accent);color:#fff;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;transition:opacity .2s}
+.article-cta .cta-btn:hover{opacity:.85}
+
+/* AFFILIATE DISCLOSURE */
+.affiliate-note{font-size:.75rem;color:var(--dim);font-style:italic;margin:1.5rem 0;padding-top:1rem;border-top:1px solid var(--border)}
