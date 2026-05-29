@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Financial Life Simulator — See How Your Decisions Play Out | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script>
+<style>
+.sim{max-width:860px;margin:2rem auto 4rem;padding:0 2rem}
+.sim h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.4rem);letter-spacing:-1px;margin-bottom:.5rem}
+.sim .sub{color:var(--dim);font-size:.95rem;margin-bottom:2.5rem}
+.setup-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2rem}
+.setup-field label{display:block;font-size:.78rem;color:var(--dim);margin-bottom:.3rem;font-weight:500}
+.setup-field input{width:100%;padding:.6rem .8rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:1rem;font-family:'Sora',sans-serif}
+.setup-field input:focus{outline:none;border-color:var(--accent)}
+.start-btn{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'Sora',sans-serif;transition:opacity .2s}
+.start-btn:hover{opacity:.85}
+#setup{text-align:center}
+#game{display:none}
+.hud{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1rem;margin-bottom:2rem}
+.hud-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.hud-label{font-size:.68rem;font-family:'Space Mono',monospace;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:.35rem}
+.hud-val{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700}
+.hud-val.green{color:var(--green)}.hud-val.accent{color:var(--accent)}.hud-val.blue{color:var(--blue)}.hud-val.purple{color:var(--purple)}
+.scenario{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem}
+.scenario .q-num{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:.75rem}
+.scenario h2{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.scenario .context{color:var(--dim);font-size:.88rem;margin-bottom:1.5rem;line-height:1.6}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.choice{background:var(--bg-el);border:1px solid var(--border);border-radius:10px;padding:1.25rem;cursor:pointer;transition:all .2s;text-align:left}
+.choice:hover{border-color:var(--accent)}
+.choice h3{font-size:.95rem;font-weight:700;margin-bottom:.35rem}
+.choice p{font-size:.78rem;color:var(--dim);line-height:1.5}
+.choice .impact{font-family:'Space Mono',monospace;font-size:.7rem;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.choice .impact.pos{color:var(--green)}.choice .impact.neg{color:#f87171}.choice .impact.neu{color:var(--blue)}
+.chart-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2rem}
+.chart-title{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem}
+canvas{width:100%;height:200px;display:block}
+#results{display:none}
+#results h2{font-size:1.6rem;font-weight:800;letter-spacing:-1px;margin-bottom:.75rem}
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
+.final-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:center}
+.final-card .fl{font-size:.75rem;color:var(--dim);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+.final-card .fv{font-family:'Space Mono',monospace;font-size:2.2rem;font-weight:700}
+.final-card .fv.green{color:var(--green)}.final-card .fv.red{color:#f87171}
+.diff-banner{background:linear-gradient(135deg,rgba(255,107,53,.1),rgba(167,139,250,.1));border:1px solid rgba(255,107,53,.2);border-radius:12px;padding:2rem;text-align:center;margin:2rem 0}
+.diff-banner .dl{font-size:.85rem;color:var(--dim);margin-bottom:.5rem}
+.diff-banner .dv{font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;color:var(--accent)}
+.diff-banner .dn{font-size:.85rem;color:var(--dim);margin-top:.5rem}
+.restart{display:inline-block;margin-top:1.5rem;padding:.6rem 1.25rem;background:var(--bg-el);border:1px solid var(--border);border-radius:8px;color:var(--dim);font-size:.85rem;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s}
+.restart:hover{border-color:var(--accent);color:var(--accent)}
+.rec-links{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.rec-links h3{font-size:.95rem;font-weight:700;margin-bottom:1rem}
+.rec-links a{display:block;color:var(--accent);text-decoration:none;font-weight:600;font-size:.88rem;padding:.4rem 0}
+@media(max-width:700px){.setup-grid{grid-template-columns:1fr}.hud{grid-template-columns:1fr 1fr}.choices{grid-template-columns:1fr}.final-grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+
+<div class="sim">
+<h1>Financial Life Simulator</h1>
+<p class="sub">Make 7 real financial decisions. Watch how each one shapes your net worth over the next 30 years.</p>
+
+<div id="setup">
+<div class="setup-grid">
+<div class="setup-field"><label>Your age</label><input type="text" id="age" value="28" inputmode="numeric"></div>
+<div class="setup-field"><label>Annual income</label><input type="text" id="income" value="55,000" inputmode="numeric"></div>
+<div class="setup-field"><label>Current savings</label><input type="text" id="savings" value="10,000" inputmode="numeric"></div>
+</div>
+<button class="start-btn" onclick="startGame()">Start Your Simulation →</button>
+</div>
+
+<div id="game">
+<div class="hud">
+<div class="hud-card"><div class="hud-label">Age</div><div class="hud-val blue" id="hudAge">28</div></div>
+<div class="hud-card"><div class="hud-label">Net Worth</div><div class="hud-val green" id="hudNW">$10,000</div></div>
+<div class="hud-card"><div class="hud-label">Monthly Savings</div><div class="hud-val accent" id="hudSave">$0</div></div>
+<div class="hud-card"><div class="hud-label">Decision</div><div class="hud-val purple" id="hudDec">1 / 7</div></div>
+</div>
+<div class="chart-wrap"><div class="chart-title">Net Worth Over Time</div><canvas id="chart"></canvas></div>
+<div id="scenario-box"></div>
+</div>
+
+<div id="results">
+<h2>Your Financial Future</h2>
+<p style="color:var(--dim);margin-bottom:1rem">Here's how your decisions played out over 30 years.</p>
+<div class="final-grid">
+<div class="final-card"><div class="fl">Your Path</div><div class="fv" id="yourFinal">$0</div></div>
+<div class="final-card"><div class="fl">Optimal Path</div><div class="fv green" id="optFinal">$0</div></div>
+</div>
+<div class="diff-banner">
+<div class="dl">The cost of suboptimal decisions</div>
+<div class="dv" id="diffVal">$0</div>
+<div class="dn" id="diffNote"></div>
+</div>
+<div id="breakdown"></div>
+<button class="restart" onclick="location.reload()">↻ Run it again with different choices</button>
+<div class="rec-links">
+<h3>Level up your money game:</h3>
+<a href="/investing/three-fund-portfolio/">→ The 3-Fund Portfolio</a>
+<a href="/money/budgeting-guide/">→ How to Create a Budget</a>
+<a href="/tools/fee-calculator/">→ 401(k) Fee Calculator</a>
+<a href="/start/">→ Start Here — Full Reading Paths</a>
+</div>
+</div>
+</div>
+
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+
+<script>
+var G={age:28,income:55000,savings:10000,monthlySave:0,investRate:.07,debtPayment:0,step:0,history:[],optHistory:[],optNW:0};
+var scenarios=[
+{title:"The Emergency Fund",ctx:"You just got your first real paycheck cycle going. Before anything else — do you build a safety net?",opts:[
+{label:"Build 3-month fund",desc:"Save $400/mo for 6 months until you have a cushion. Boring but bulletproof.","impact":"Monthly savings: -$400 for 6 months, then +$400","impactClass":"pos",apply:function(){G.monthlySave+=400;G.savings+=2400;return 2400},optimal:true},
+{label:"Skip it — invest instead",desc:"Put that $400/mo straight into the market. Higher returns, right?","impact":"More growth potential but one bad month could wreck you","impactClass":"neu",apply:function(){G.monthlySave+=400;return 0},optimal:false}
+]},
+{title:"The Car Decision",ctx:"You need reliable transportation. Your income is $"+0+"/year. How much car do you buy?",opts:[
+{label:"Reliable used car — $15K",desc:"A 3-year-old Honda or Toyota. Paid off in 4 years. Low insurance, low maintenance.","impact":"Monthly: -$350 payment + $200 costs = -$550","impactClass":"pos",apply:function(){G.monthlySave-=550;return -550*48},optimal:true},
+{label:"New car — $38K",desc:"Brand new with all the features. 6-year loan. Higher insurance, faster depreciation.","impact":"Monthly: -$650 payment + $350 costs = -$1,000","impactClass":"neg",apply:function(){G.monthlySave-=1000;return -1000*72},optimal:false}
+]},
+{title:"The 401(k) Question",ctx:"Your employer offers a 401(k) with a 50% match up to 6% of your salary. What do you do?",opts:[
+{label:"Contribute 6% — get full match",desc:"That's $275/mo from you, $137/mo free from your employer. Instant 50% return.","impact":"Monthly: -$275, but +$137 free money","impactClass":"pos",apply:function(){G.monthlySave-=275;G.investRate=.08;return 137*12*30},optimal:true},
+{label:"Contribute 2% — save cash",desc:"Keep more in your paycheck now. You'll increase it later (you probably won't).","impact":"Monthly: -$92, missing $100+/mo in free money","impactClass":"neg",apply:function(){G.monthlySave-=92;return 0},optimal:false}
+]},
+{title:"The Housing Decision",ctx:"Rent is $1,200/mo in your area. You could buy a house for $250K with 10% down. What do you do?",opts:[
+{label:"Keep renting — invest the difference",desc:"Stay flexible. Put what you'd spend on maintenance and equity into index funds.","impact":"Monthly: -$1,200 rent, +$500 invested","impactClass":"neu",apply:function(){G.monthlySave-=1200;G.monthlySave+=500;return 500*12*25*.07},optimal:false},
+{label:"Buy the house",desc:"Build equity. Payment is $1,450 but $400/mo goes to principal. Factor in maintenance.","impact":"Monthly: -$1,650 total, building ~$400/mo equity","impactClass":"pos",apply:function(){G.monthlySave-=1650;return 400*12*25},optimal:true}
+]},
+{title:"The Investment Strategy",ctx:"You have retirement money going in. But what fund are you in?",opts:[
+{label:"Low-cost index funds (0.04% fee)",desc:"Total market index. Boring, diversified, what the data says works.","impact":"Projected: 7-8% avg annual return after fees","impactClass":"pos",apply:function(){G.investRate=.08;return G.savings*.04*30},optimal:true},
+{label:"Target-date fund (0.65% fee)",desc:"Set it and forget it. Professional management. Higher fees.","impact":"Projected: 6.5-7% avg annual return after fees","impactClass":"neg",apply:function(){G.investRate=.065;return -G.savings*.01*30},optimal:false}
+]},
+{title:"The Debt Trap",ctx:"A friend talks you into a vacation. You put $5,000 on a credit card at 24% APR. How do you handle it?",opts:[
+{label:"Pay it off aggressively — $500/mo",desc:"Painful for 10 months but you're free. Total cost: ~$5,600.","impact":"10 months of -$500, then done","impactClass":"pos",apply:function(){G.monthlySave-=500;setTimeout(function(){G.monthlySave+=500},100);return -600},optimal:true},
+{label:"Minimum payments — $125/mo",desc:"Easier monthly hit. But it takes 5+ years and you pay $3,000+ in interest.","impact":"$125/mo for 5 years. Total cost: ~$8,000+","impactClass":"neg",apply:function(){G.monthlySave-=125;return -3000},optimal:false}
+]},
+{title:"The Side Hustle",ctx:"You have evenings and weekends. A friend suggests starting a side project. What do you do?",opts:[
+{label:"Build something — invest the time",desc:"Start a content site, freelance, or learn a skill. $0 now, potential $500-2,000/mo in a year.","impact":"Long-term: +$1,000/mo average after year 1","impactClass":"pos",apply:function(){G.monthlySave+=1000;return 1000*12*20},optimal:true},
+{label:"Enjoy the free time",desc:"Work-life balance matters. You already have a job. No shame in recharging.","impact":"No financial impact. Priceless mental health.","impactClass":"neu",apply:function(){return 0},optimal:false}
+]}
+];
+
+function pn(s){return parseFloat(String(s).replace(/[^0-9.\-]/g,''))||0}
+function fmt(n){if(Math.abs(n)>=1000000)return '$'+(n/1000000).toFixed(1)+'M';return '$'+Math.round(n).toLocaleString('en-US')}
+
+function startGame(){
+  G.age=pn(document.getElementById('age').value)||28;
+  G.income=pn(document.getElementById('income').value)||55000;
+  G.savings=pn(document.getElementById('savings').value)||10000;
+  G.monthlySave=0;G.step=0;G.history=[];G.optHistory=[];G.optNW=G.savings;
+  scenarios[1].ctx="You need reliable transportation. Your income is $"+G.income.toLocaleString()+"/year. How much car do you buy?";
+  document.getElementById('setup').style.display='none';
+  document.getElementById('game').style.display='block';
+  G.history.push(G.savings);
+  G.optHistory.push(G.savings);
+  updateHUD();
+  drawChart();
+  showScenario();
+}
+
+function updateHUD(){
+  document.getElementById('hudAge').textContent=G.age+G.step*4;
+  document.getElementById('hudNW').textContent=fmt(G.savings);
+  document.getElementById('hudSave').textContent=fmt(G.monthlySave)+'/mo';
+  document.getElementById('hudDec').textContent=(G.step+1)+' / 7';
+}
+
+function showScenario(){
+  if(G.step>=scenarios.length){showResults();return;}
+  var s=scenarios[G.step];
+  var h='<div class="scenario"><span class="q-num">Decision '+(G.step+1)+' of 7 — Age '+(G.age+G.step*4)+'</span>';
+  h+='<h2>'+s.title+'</h2><p class="context">'+s.ctx+'</p><div class="choices">';
+  s.opts.forEach(function(o,i){
+    h+='<div class="choice" onclick="choose('+i+')"><h3>'+o.label+'</h3><p>'+o.desc+'</p><div class="impact '+o.impactClass+'">'+o.impact+'</div></div>';
+  });
+  h+='</div></div>';
+  document.getElementById('scenario-box').innerHTML=h;
+}
+
+function choose(idx){
+  var s=scenarios[G.step];
+  s.opts[idx].apply();
+  // Simulate 4 years
+  for(var y=0;y<4;y++){
+    G.savings=G.savings*(1+G.investRate/12*0+G.investRate)+G.monthlySave*12;
+    if(G.savings<0)G.savings=0;
+    G.history.push(G.savings);
+  }
+  // Optimal path
+  var optSave=G.optNW;
+  for(var y=0;y<4;y++){
+    optSave=optSave*1.08+800*12;
+    G.optHistory.push(optSave);
+  }
+  G.optNW=optSave;
+  G.step++;
+  updateHUD();
+  drawChart();
+  showScenario();
+}
+
+function drawChart(){
+  var c=document.getElementById('chart');
+  var ctx=c.getContext('2d');
+  var dpr=window.devicePixelRatio||1;
+  c.width=c.offsetWidth*dpr;c.height=200*dpr;
+  ctx.scale(dpr,dpr);
+  var w=c.offsetWidth,h=200;
+  ctx.clearRect(0,0,w,h);
+  var all=G.history.concat(G.optHistory);
+  var max=Math.max.apply(null,all)||1;
+  // Grid
+  ctx.strokeStyle='rgba(255,255,255,.05)';ctx.lineWidth=1;
+  for(var i=1;i<4;i++){var gy=h-h*(i/4);ctx.beginPath();ctx.moveTo(40,gy);ctx.lineTo(w-10,gy);ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.2)';ctx.font='10px Space Mono';ctx.textAlign='right';ctx.fillText(fmt(max*i/4),38,gy+3);
+  }
+  // Optimal line
+  if(G.optHistory.length>1){
+    ctx.strokeStyle='rgba(52,211,153,.3)';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();
+    G.optHistory.forEach(function(v,i){var x=40+(w-50)*i/(Math.max(G.optHistory.length-1,1));var y=h-10-(h-25)*(v/max);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+    ctx.stroke();ctx.setLineDash([]);
+  }
+  // Your line
+  if(G.history.length>1){
+    ctx.strokeStyle='#FF6B35';ctx.lineWidth=3;ctx.beginPath();
+    G.history.forEach(function(v,i){var x=40+(w-50)*i/(Math.max(G.history.length-1,1));var y=h-10-(h-25)*(v/max);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+    ctx.stroke();
+    // Dot at end
+    var lx=40+(w-50);var ly=h-10-(h-25)*(G.history[G.history.length-1]/max);
+    ctx.beginPath();ctx.arc(lx,ly,5,0,Math.PI*2);ctx.fillStyle='#FF6B35';ctx.fill();
+  }
+  // Legend
+  ctx.fillStyle='#FF6B35';ctx.fillRect(50,8,12,3);ctx.fillStyle='rgba(255,255,255,.5)';ctx.font='10px Sora';ctx.textAlign='left';ctx.fillText('Your path',66,12);
+  ctx.fillStyle='rgba(52,211,153,.5)';ctx.fillRect(140,8,12,3);ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillText('Optimal',156,12);
+}
+
+function showResults(){
+  document.getElementById('game').style.display='none';
+  document.getElementById('results').style.display='block';
+  var yours=G.history[G.history.length-1]||0;
+  var opt=G.optHistory[G.optHistory.length-1]||0;
+  document.getElementById('yourFinal').textContent=fmt(yours);
+  document.getElementById('yourFinal').className='fv '+(yours>=opt*.8?'green':'red');
+  document.getElementById('optFinal').textContent=fmt(opt);
+  var diff=opt-yours;
+  document.getElementById('diffVal').textContent=diff>0?fmt(diff):'$0 — You nailed it!';
+  document.getElementById('diffNote').textContent=diff>0?'Small decisions compound into massive differences over 30 years.':'Your choices tracked close to optimal. Well played.';
+}
+
+window.addEventListener('resize',drawChart);
+</script>
+</body></html>
