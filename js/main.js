@@ -25,7 +25,7 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
   if(path.indexOf('/cars/')>-1){
     cta='<div class="article-cta"><h3>Planning to buy a car?</h3><p>Run the real numbers before you walk into the dealership.</p><a href="/tools/car-affordability-calculator/" class="cta-btn">Try the Car Affordability Calculator →</a></div>';
   }else if(path.indexOf('/investing/')>-1){
-    cta='<div class="article-cta"><h3>Ready to optimize your portfolio?</h3><p>Low-cost index funds can save you six figures over your career. Start with the basics.</p><a href="/investing/three-fund-portfolio/" class="cta-btn">Read: The 3-Fund Portfolio →</a></div>';
+    cta='<div class="article-cta"><h3>How much are fees costing you?</h3><p>The difference between a high-fee fund and an index fund can be six figures. See your number.</p><a href="/tools/fee-calculator/" class="cta-btn">Try the 401(k) Fee Calculator →</a></div>';
   }else if(path.indexOf('/crypto/')>-1){
     cta='<div class="article-cta"><h3>Got a plan for taking profits?</h3><p>A sell ladder takes the emotion out of the hardest decision in crypto.</p><a href="/crypto/bitcoin-sell-ladder/" class="cta-btn">Read: How to Build a Sell Ladder →</a></div>';
   }else if(path.indexOf('/money/')>-1){
