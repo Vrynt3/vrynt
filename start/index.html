@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script><title>What Should I Do With My Money? — Free Quiz | Vrynt</title>
+<style>
+.quiz-wrap{max-width:640px;margin:2rem auto 4rem;padding:0 2rem}
+.quiz-wrap h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.4rem);letter-spacing:-1px;margin-bottom:.5rem}
+.quiz-wrap .sub{color:var(--dim);font-size:1rem;margin-bottom:2.5rem}
+.q-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;display:none}
+.q-card.active{display:block}
+.q-card h2{font-size:1.15rem;font-weight:700;margin-bottom:1.25rem}
+.q-num{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:.75rem;display:block}
+.q-options{display:flex;flex-direction:column;gap:.6rem}
+.q-opt{background:var(--bg-el);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.25rem;cursor:pointer;font-size:.92rem;transition:all .2s;color:var(--text)}
+.q-opt:hover{border-color:var(--accent);color:var(--accent)}
+.q-opt.selected{border-color:var(--accent);background:rgba(255,107,53,.1);color:var(--accent);font-weight:600}
+.progress-dots{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.dot.filled{background:var(--accent)}
+.dot.current{background:var(--accent);box-shadow:0 0 8px rgba(255,107,53,.4)}
+#results{display:none}
+#results h2{font-size:1.4rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.5px}
+#results .result-sub{color:var(--dim);margin-bottom:2rem;font-size:.95rem}
+.rec-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem;text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s}
+.rec-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.rec-card .rec-tag{font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:.5rem;display:block}
+.rec-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.35rem}
+.rec-card p{color:var(--dim);font-size:.85rem}
+.restart-btn{display:inline-block;margin-top:1.5rem;padding:.6rem 1.25rem;background:var(--bg-el);border:1px solid var(--border);border-radius:8px;color:var(--dim);font-size:.85rem;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s}
+.restart-btn:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+
+<div class="quiz-wrap">
+<h1>What Should I Do With My Money?</h1>
+<p class="sub">Answer 5 quick questions and get a personalized reading list based on where you are right now.</p>
+
+<div class="progress-dots" id="dots"></div>
+
+<div class="q-card active" data-q="0">
+<span class="q-num">Question 1 of 5</span>
+<h2>What's on your mind right now?</h2>
+<div class="q-options">
+<div class="q-opt" data-v="cars">I'm thinking about buying a car</div>
+<div class="q-opt" data-v="investing">I want to start investing or fix my portfolio</div>
+<div class="q-opt" data-v="crypto">I'm curious about Bitcoin and crypto</div>
+<div class="q-opt" data-v="basics">I need to get my basic finances in order</div>
+</div>
+</div>
+
+<div class="q-card" data-q="1">
+<span class="q-num">Question 2 of 5</span>
+<h2>Do you have an emergency fund?</h2>
+<div class="q-options">
+<div class="q-opt" data-v="none">No, or less than $500</div>
+<div class="q-opt" data-v="some">I have $1,000-3,000 saved</div>
+<div class="q-opt" data-v="solid">I have 3+ months of expenses saved</div>
+</div>
+</div>
+
+<div class="q-card" data-q="2">
+<span class="q-num">Question 3 of 5</span>
+<h2>What's your debt situation?</h2>
+<div class="q-options">
+<div class="q-opt" data-v="high">High-interest debt (credit cards, personal loans)</div>
+<div class="q-opt" data-v="moderate">Just a car loan or student loans</div>
+<div class="q-opt" data-v="low">Mortgage only or debt-free</div>
+</div>
+</div>
+
+<div class="q-card" data-q="3">
+<span class="q-num">Question 4 of 5</span>
+<h2>Are you contributing to retirement?</h2>
+<div class="q-options">
+<div class="q-opt" data-v="no">Not yet</div>
+<div class="q-opt" data-v="some">Yes but I'm not sure it's set up right</div>
+<div class="q-opt" data-v="yes">Yes and I'm comfortable with my allocation</div>
+</div>
+</div>
+
+<div class="q-card" data-q="4">
+<span class="q-num">Question 5 of 5</span>
+<h2>What best describes your income situation?</h2>
+<div class="q-options">
+<div class="q-opt" data-v="tight">Paycheck to paycheck — not much left over</div>
+<div class="q-opt" data-v="ok">Some room — I could save more if I tried</div>
+<div class="q-opt" data-v="good">Comfortable — I have money to put to work</div>
+</div>
+</div>
+
+<div id="results">
+<h2>Your Personalized Reading List</h2>
+<p class="result-sub">Based on your answers, here's where to start:</p>
+<div id="rec-list"></div>
+<button class="restart-btn" onclick="restart()">↻ Take the quiz again</button>
+</div>
+</div>
+
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+
+<script>
+var answers=[];
+var cards=document.querySelectorAll('.q-card');
+var dotsEl=document.getElementById('dots');
+for(var i=0;i<5;i++){var d=document.createElement('div');d.className='dot'+(i===0?' current':'');dotsEl.appendChild(d);}
+var dots=dotsEl.querySelectorAll('.dot');
+
+document.querySelectorAll('.q-opt').forEach(function(opt){
+  opt.addEventListener('click',function(){
+    var card=this.closest('.q-card');
+    card.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('selected')});
+    this.classList.add('selected');
+    answers[parseInt(card.dataset.q)]=this.dataset.v;
+    setTimeout(function(){
+      var next=parseInt(card.dataset.q)+1;
+      if(next<5){
+        card.classList.remove('active');
+        cards[next].classList.add('active');
+        dots.forEach(function(d,i){d.className='dot'+(i<next?'filled':'')+(i===next?' current':'')});
+      }else{showResults();}
+    },400);
+  });
+});
+
+function showResults(){
+  cards.forEach(function(c){c.classList.remove('active')});
+  dots.forEach(function(d){d.className='dot filled'});
+  document.getElementById('results').style.display='block';
+  var recs=[];
+  if(answers[1]==='none')recs.push({tag:'Priority',title:'Emergency Fund: How Much You Need',desc:'Build your safety net first — everything else depends on this.',url:'/money/emergency-fund/'});
+  if(answers[2]==='high')recs.push({tag:'Priority',title:'Should You Pay Off Debt or Invest?',desc:'High-interest debt usually wins. Here\'s the framework.',url:'/money/debt-vs-invest/'});
+  if(answers[4]==='tight')recs.push({tag:'Foundation',title:'How to Create a Budget',desc:'Two simple methods that actually work.',url:'/money/budgeting-guide/'});
+  if(answers[0]==='cars'){
+    recs.push({tag:'Car Buying',title:'How Dealerships Actually Make Money',desc:'Understand the business before you walk in.',url:'/cars/how-dealerships-make-money/'});
+    recs.push({tag:'Car Buying',title:'Dealership vs Bank Financing',desc:'How to get the best rate by playing both sides.',url:'/cars/dealership-vs-bank-financing/'});
+    recs.push({tag:'Tool',title:'Car Affordability Calculator',desc:'Run the real numbers before you buy.',url:'/tools/car-affordability-calculator/'});
+  }
+  if(answers[0]==='investing'||answers[3]==='no'||answers[3]==='some'){
+    recs.push({tag:'Investing',title:'Employer Match: Free Money',desc:'The guaranteed 50-100% return most people miss.',url:'/investing/employer-match/'});
+    recs.push({tag:'Investing',title:'Target-Date Funds vs Index Funds',desc:'You might be paying 5x the fees you need to.',url:'/investing/target-date-vs-index-funds/'});
+    recs.push({tag:'Investing',title:'The 3-Fund Portfolio',desc:'The simplest way to invest that beats most pros.',url:'/investing/three-fund-portfolio/'});
+  }
+  if(answers[0]==='crypto'){
+    recs.push({tag:'Crypto',title:'Bitcoin vs Ethereum',desc:'Different purposes, different investment cases.',url:'/crypto/bitcoin-vs-ethereum/'});
+    recs.push({tag:'Crypto',title:'Dollar-Cost Averaging Into Bitcoin',desc:'The data-backed way to build a position.',url:'/crypto/dca-bitcoin/'});
+    recs.push({tag:'Crypto',title:'How to Set Up a Sell Ladder',desc:'Take profits without trying to time the top.',url:'/crypto/bitcoin-sell-ladder/'});
+  }
+  if(answers[0]==='basics'){
+    recs.push({tag:'Foundation',title:'Credit Score Explained',desc:'What actually moves the number.',url:'/money/credit-score-explained/'});
+    recs.push({tag:'Foundation',title:'Best High-Yield Savings Accounts',desc:'Stop earning 0.01% on your cash.',url:'/money/high-yield-savings/'});
+  }
+  if(answers[4]==='good'&&answers[1]==='solid'&&answers[2]==='low'){
+    recs.push({tag:'Next Level',title:'Roth IRA vs Traditional IRA',desc:'Tax-free growth or tax break now? Here\'s how to decide.',url:'/investing/roth-vs-traditional/'});
+  }
+  var list=document.getElementById('rec-list');
+  list.innerHTML='';
+  recs.forEach(function(r){
+    list.innerHTML+='<a href="'+r.url+'" class="rec-card"><span class="rec-tag">'+r.tag+'</span><h3>'+r.title+'</h3><p>'+r.desc+'</p></a>';
+  });
+}
+function restart(){answers=[];document.getElementById('results').style.display='none';cards.forEach(function(c,i){c.classList.remove('active');if(i===0)c.classList.add('active')});cards[0].querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('selected')});dots.forEach(function(d,i){d.className='dot'+(i===0?' current':'')});}
+</script>
+</body></html>
