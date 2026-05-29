@@ -35,6 +35,16 @@
         .section-bar{max-width:var(--mw);margin:4.5rem auto 1.75rem;padding:0 2rem;display:flex;align-items:center;gap:1rem}
         .section-bar h2{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--dim);white-space:nowrap}
         .section-bar::after{content:'';flex:1;height:1px;background:var(--border)}
+        .tool-spotlight{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem}
+        .tool-card{display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#1a1220 0%,#16161A 50%,#111a16 100%);border:1px solid var(--border);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s}
+        .tool-card:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .tool-info{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+        .tool-info h3{font-size:1.6rem;font-weight:700;letter-spacing:-.5px;margin-bottom:.75rem}
+        .tool-info p{color:var(--dim);font-size:.92rem;line-height:1.6;margin-bottom:1.25rem}
+        .tool-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.25rem;background:var(--green);color:#0C0C0E;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;width:fit-content;transition:opacity .2s}
+        .tool-btn:hover{opacity:.85}
+        .tool-preview{background:var(--bg-el);padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;color:var(--green);letter-spacing:-2px}
+        .tool-preview small{font-size:.85rem;color:var(--dim);margin-top:.25rem;letter-spacing:0}
         .btc-strip{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem}
         .btc-card{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;background:linear-gradient(135deg,#0f1628 0%,#16161A 100%);border:1px solid var(--border);border-radius:14px;padding:1.75rem 2rem;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
         .btc-card:hover{transform:translateY(-2px);border-color:var(--blue)}
@@ -48,19 +58,19 @@
         .bento-card h3{font-size:1.15rem;font-weight:700;line-height:1.3;letter-spacing:-.3px;margin-bottom:.5rem}
         .bento-card p{color:var(--dim);font-size:.85rem;line-height:1.6;flex-grow:1}
         .bento-card .meta{margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.72rem;color:var(--dim);font-family:'Space Mono',monospace}
-        .quick-grid{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem}
-        .quick-card{border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
+        .quick-grid{max-width:var(--mw);margin:0 auto 2rem;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+        .quick-card{border:1px solid var(--border);border-radius:14px;padding:2rem;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
         .quick-card:hover{transform:translateY(-3px);border-color:var(--accent)}
         .quick-card .qt{font-family:'Space Mono',monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:.75rem;display:block}
-        .quick-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
-        .quick-card p{color:var(--dim);font-size:.82rem;line-height:1.5}
+        .quick-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+        .quick-card p{color:var(--dim);font-size:.88rem}
         footer{max-width:var(--mw);margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--dim)}
         footer a{color:var(--dim);text-decoration:none;transition:color .2s}
         footer a:hover{color:var(--text)}
         .fade-up{opacity:0;transform:translateY(30px);animation:fadeUp .6s ease forwards}
         @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
         .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
-        @media(max-width:768px){.hero{grid-template-columns:1fr;min-height:auto;margin-top:2rem}.nav-links{display:none}.bento{grid-template-columns:1fr}.bento-card.span-2{grid-column:span 1}.btc-card{grid-template-columns:1fr;gap:.75rem}.btc-badge{width:fit-content}.quick-grid{grid-template-columns:1fr}}
+        @media(max-width:768px){.hero{grid-template-columns:1fr;min-height:auto;margin-top:2rem}.nav-links{display:none}.bento{grid-template-columns:1fr}.bento-card.span-2{grid-column:span 1}.tool-card{grid-template-columns:1fr}.tool-preview{display:none}.btc-card{grid-template-columns:1fr;gap:.75rem}.btc-badge{width:fit-content}.quick-grid{grid-template-columns:1fr}}
     </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script></head>
 <body>
@@ -99,17 +109,25 @@
     <a href="/start/" class="quick-card" style="background:linear-gradient(135deg,#1a1220,#16161A)">
         <span class="qt" style="color:var(--accent)">📍 New Here?</span>
         <h3>Start Here</h3>
-        <p>Guided reading paths for car buying, investing, crypto, and money basics.</p>
+        <p>Pick your topic and follow a guided reading path. Car buying, investing, crypto, or money basics.</p>
     </a>
     <a href="/tools/money-quiz/" class="quick-card" style="background:linear-gradient(135deg,#111a16,#16161A)">
-        <span class="qt" style="color:var(--green)">🧠 Quiz</span>
+        <span class="qt" style="color:var(--green)">🧠 Interactive Quiz</span>
         <h3>What Should I Do With My Money?</h3>
-        <p>5 questions. Personalized reading list.</p>
+        <p>5 questions. Personalized reading list based on your situation.</p>
     </a>
-    <a href="/tools/car-affordability-calculator/" class="quick-card" style="background:linear-gradient(135deg,#16161A,#1a1618)">
-        <span class="qt" style="color:var(--purple)">⚙ Calculator</span>
-        <h3>Car Affordability</h3>
-        <p>The real monthly cost including insurance, gas, and depreciation.</p>
+</div>
+
+<div class="section-bar"><h2>Interactive Tools</h2></div>
+<div class="tool-spotlight">
+    <a href="/tools/car-affordability-calculator/" class="tool-card">
+        <div class="tool-info">
+            <div class="tag tag-tool">⚙ Calculator</div>
+            <h3>Car Affordability Calculator</h3>
+            <p>Most calculators only show your loan payment. This one includes insurance, gas, maintenance, and depreciation — the real cost of owning a car.</p>
+            <span class="tool-btn">Try it now →</span>
+        </div>
+        <div class="tool-preview">$1,160<small>/mo real cost</small></div>
     </a>
 </div>
 
