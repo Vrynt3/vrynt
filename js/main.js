@@ -13,3 +13,40 @@ if(bt){window.addEventListener('scroll',function(){if(window.scrollY>400){bt.cla
 
 // Copy link
 document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener('click',function(){navigator.clipboard.writeText(window.location.href);b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000)})});
+
+// Auto-inject CTA on article pages
+(function(){
+  var art=document.querySelector('article');
+  if(!art)return;
+  var path=window.location.pathname;
+
+  // Determine CTA based on category
+  var cta='';
+  if(path.indexOf('/cars/')>-1){
+    cta='<div class="article-cta"><h3>Planning to buy a car?</h3><p>Run the real numbers before you walk into the dealership.</p><a href="/tools/car-affordability-calculator/" class="cta-btn">Try the Car Affordability Calculator →</a></div>';
+  }else if(path.indexOf('/investing/')>-1){
+    cta='<div class="article-cta"><h3>Ready to optimize your portfolio?</h3><p>Low-cost index funds can save you six figures over your career. Start with the basics.</p><a href="/investing/three-fund-portfolio/" class="cta-btn">Read: The 3-Fund Portfolio →</a></div>';
+  }else if(path.indexOf('/crypto/')>-1){
+    cta='<div class="article-cta"><h3>Got a plan for taking profits?</h3><p>A sell ladder takes the emotion out of the hardest decision in crypto.</p><a href="/crypto/bitcoin-sell-ladder/" class="cta-btn">Read: How to Build a Sell Ladder →</a></div>';
+  }else if(path.indexOf('/money/')>-1){
+    cta='<div class="article-cta"><h3>Want to get your money right?</h3><p>Start with the foundation — an emergency fund and a budget that actually works.</p><a href="/money/budgeting-guide/" class="cta-btn">Read: Budgeting Guide →</a></div>';
+  }
+
+  if(cta){
+    var div=document.createElement('div');
+    div.innerHTML=cta;
+    var shareBar=art.querySelector('.share-bar');
+    if(shareBar){art.insertBefore(div.firstChild,shareBar)}
+    else{art.appendChild(div.firstChild)}
+  }
+
+  // Add affiliate disclosure to articles that mention financial products
+  var text=art.textContent||'';
+  var hasProducts=text.match(/Fidelity|Vanguard|Schwab|Coinbase|Kraken|CarMax|KBB|Kelley Blue Book|Marcus|Ally Bank|Capital One|Credit Karma/i);
+  if(hasProducts){
+    var disc=document.createElement('p');
+    disc.className='affiliate-note';
+    disc.textContent='Some links in this article may be affiliate links. If you sign up or make a purchase through them, Vrynt may earn a small commission at no extra cost to you. We only recommend products and services we genuinely believe in.';
+    art.appendChild(disc);
+  }
+})();
