@@ -1,86 +1,20 @@
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0C0C0E;--bg-card:#16161A;--bg-el:#1E1E23;--text:#EAEAEA;--dim:#8A8A8E;--accent:#FF6B35;--green:#34D399;--blue:#60A5FA;--purple:#A78BFA;--border:#2A2A2F;--mw:1200px}
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
-nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--mw);margin:0 auto;padding:1.5rem 2rem}
-.logo{font-family:'Space Mono',monospace;font-weight:700;font-size:1.4rem;color:var(--text);text-decoration:none;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:1.75rem;list-style:none}
-.nav-links a{text-decoration:none;color:var(--dim);font-weight:500;font-size:.85rem;letter-spacing:.3px;transition:color .25s}
-.nav-links a:hover{color:var(--text)}
-.nav-links a.active{color:var(--text);font-weight:700}
-
-/* ARTICLE STYLES */
-article{max-width:720px;margin:2rem auto 4rem;padding:0 2rem}
-.breadcrumb{font-size:.82rem;color:var(--dim);margin-bottom:2rem}
-.breadcrumb a{color:var(--accent);text-decoration:none}
-article h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.12;letter-spacing:-1px;margin-bottom:1rem}
-.meta{color:var(--dim);font-size:.85rem;font-family:'Space Mono',monospace;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
-article h2{font-weight:700;font-size:1.4rem;letter-spacing:-.3px;margin:2.5rem 0 1rem}
-article h3{font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
-article p{margin-bottom:1.25rem;color:var(--text)}
-.callout{background:var(--bg-card);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;border-radius:0 10px 10px 0;margin:1.5rem 0;font-size:.92rem}
-.callout strong{color:var(--accent)}
-.callout-green{border-left-color:var(--green)}.callout-green strong{color:var(--green)}
-.callout-blue{border-left-color:var(--blue)}.callout-blue strong{color:var(--blue)}
-.callout-purple{border-left-color:var(--purple)}.callout-purple strong{color:var(--purple)}
-.callout-bear{border-left-color:#f87171}.callout-bear strong{color:#f87171}
-.callout-bull{border-left-color:var(--green)}.callout-bull strong{color:var(--green)}
-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
-th{text-align:left;padding:.75rem 1rem;background:var(--bg-el);font-weight:700;border-bottom:2px solid var(--border);color:var(--text)}
-td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--dim)}
-.highlight{color:var(--green);font-weight:700}
-
-/* CATEGORY PAGE */
-.page-header{max-width:var(--mw);margin:3rem auto 2.5rem;padding:0 2rem}
-.page-header h1{font-weight:800;font-size:2.2rem;letter-spacing:-1px;margin-bottom:.5rem}
-.page-header p{color:var(--dim);font-size:1.05rem}
-.grid-section{max-width:var(--mw);margin:0 auto 4rem;padding:0 2rem}
-.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-3px);border-color:#3A3A40}
-.card h3{font-size:1.15rem;font-weight:700;line-height:1.3;letter-spacing:-.3px;margin-bottom:.5rem}
-.card p{color:var(--dim);font-size:.88rem;line-height:1.6;flex-grow:1}
-.card-meta{margin-top:1.25rem;font-size:.72rem;color:var(--dim);padding-top:1rem;border-top:1px solid var(--border);font-family:'Space Mono',monospace}
-
-footer{max-width:var(--mw);margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--dim)}
-footer a{color:var(--dim);text-decoration:none}
-footer a:hover{color:var(--text)}
-
-@media(max-width:768px){.nav-links{display:none}.article-grid{grid-template-columns:1fr}}
-
-/* PROGRESS BAR */
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple));z-index:1000;transition:width .1s;width:0}
-
-/* STICKY NAV */
-nav{position:sticky;top:0;z-index:999;background:rgba(12,12,14,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-
-/* MOBILE MENU */
-.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
-@media(max-width:768px){.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-card);border-bottom:1px solid var(--border);flex-direction:column;padding:1.5rem 2rem;gap:1rem}.nav-links.open{display:flex}}
-
-/* BACK TO TOP */
-.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border);color:var(--text);font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all .25s;z-index:998}
-.back-top:hover{background:var(--accent);border-color:var(--accent);color:#0C0C0E}
-.back-top.show{display:flex}
-
-/* SHARE BUTTON */
-.share-bar{display:flex;gap:.75rem;align-items:center;margin:2.5rem 0;padding-top:1.5rem;border-top:1px solid var(--border)}
-.share-btn{padding:.45rem 1rem;border-radius:8px;background:var(--bg-el);border:1px solid var(--border);color:var(--dim);font-size:.8rem;font-family:'Sora',sans-serif;cursor:pointer;transition:all .2s}
-.share-btn:hover{border-color:var(--accent);color:var(--accent)}
-.share-label{font-size:.78rem;color:var(--dim);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px}
-
-/* RELATED ARTICLES */
-.related{max-width:720px;margin:0 auto 4rem;padding:0 2rem}
-.related h3{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--dim);margin-bottom:1.25rem}
-.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
-.related-card:hover{transform:translateY(-2px);border-color:#3A3A40}
-.related-card .rtag{font-size:.65rem;font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.5rem;display:block}
-.related-card h4{font-size:.95rem;font-weight:600;line-height:1.3}
-@media(max-width:640px){.related-grid{grid-template-columns:1fr}}
-
-/* AUTHOR CARD */
-.author-card{display:flex;gap:1.25rem;align-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2.5rem 0}
-.author-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:1.1rem;flex-shrink:0}
-.author-info .aname{font-weight:700;font-size:.92rem;margin-bottom:.15rem}
-.author-info .abio{font-size:.8rem;color:var(--dim);line-height:1.5}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script><title>What Is a Bitcoin Halving and Why Does the Price Move? | Vrynt</title></head><body><div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<article>
+<div class="breadcrumb"><a href="/">Home</a> → <a href="/crypto/">Crypto</a> → Bitcoin Halving</div>
+<h1>What Is a Bitcoin Halving and Why Does the Price Move?</h1>
+<div class="meta">By Vrynt · May 29, 2026 · 7 min read</div>
+<p>Every four years, Bitcoin undergoes an event called a "halving" where the reward that miners receive for processing transactions gets cut in half. This is the most important supply-side event in crypto, and historically, it's preceded massive price increases. The most recent halving occurred in April 2024.</p>
+<h2>How It Works</h2>
+<p>Bitcoin miners validate transactions and add them to the blockchain. In return, they receive newly created Bitcoin as a reward. When Bitcoin launched in 2009, the reward was 50 BTC per block. Every 210,000 blocks (roughly 4 years), that reward halves. It went from 50 to 25 (2012), to 12.5 (2016), to 6.25 (2020), to 3.125 (2024). Eventually, around the year 2140, the last Bitcoin will be mined and the reward drops to zero. Total supply is capped at 21 million.</p>
+<h2>Why It Matters for Price</h2>
+<p>The halving reduces the rate at which new Bitcoin enters circulation. If demand stays the same or increases while new supply is cut in half, basic economics suggests the price should rise. Miners also need higher prices post-halving to cover their operating costs with fewer coins earned, which creates a higher effective "floor" for the price.</p>
+<h2>The Historical Pattern</h2>
+<p>Every previous halving has been followed by a significant price increase — though the timing and magnitude vary. The 2012 halving preceded a run from ~$12 to ~$1,100. The 2016 halving preceded a run from ~$650 to ~$20,000. The 2020 halving preceded a run from ~$8,700 to ~$69,000. The pattern isn't guaranteed to repeat, but three for three is hard to ignore.</p>
+<p>Importantly, the price surge doesn't happen immediately at the halving. Historically, the biggest moves came 12-18 months after the event. The 2024 halving puts the projected bull market peak window somewhere in late 2025 through 2026 — which is where we are now.</p>
+<div class="callout callout-blue"><strong>The bottom line:</strong> The halving cuts Bitcoin's new supply in half every four years, creating a supply shock that has historically preceded major bull runs. It's not a guarantee, and past performance doesn't predict future results. But it's the most important cyclical event in crypto and understanding it helps you position — whether that means accumulating before or building your sell ladder for what comes after.</div>
+<div class="share-bar"><span class="share-label">Share</span><button class="share-btn share-copy">Copy link</button></div><div class="author-card"><div class="author-avatar">V</div><div class="author-info"><div class="aname">Vrynt</div><div class="abio">Written from real experience in the car business, personal investing, and crypto. Not a financial advisor — just someone who does this stuff.</div></div></div>
+</article>
+<div class="related"><h3>Related Articles</h3><div class="related-grid">
+<a href="/crypto/bitcoin-sell-ladder/" class="related-card"><span class="rtag" style="color:var(--blue)">Crypto</span><h4>Bitcoin Sell Ladder</h4></a>
+<a href="/crypto/bitcoin-vs-ethereum/" class="related-card"><span class="rtag" style="color:var(--blue)">Crypto</span><h4>Bitcoin vs Ethereum</h4></a>
+</div></div><footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script></body></html>
