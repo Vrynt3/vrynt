@@ -94,15 +94,15 @@ nav{position:sticky;top:0;z-index:999;background:rgba(12,12,14,.92);backdrop-fil
 
 /* AFFILIATE DISCLOSURE */
 .affiliate-note{font-size:.75rem;color:var(--dim);font-style:italic;margin:1.5rem 0;padding-top:1rem;border-top:1px solid var(--border)}
-
-/* CRYPTO TICKER */
-.crypto-ticker{background:var(--bg-card);border-bottom:1px solid var(--border);padding:.45rem 0}
-.ticker-inner{max-width:var(--mw,1200px);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:1.5rem;font-size:.78rem}
-.ticker-coin{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:inherit;transition:opacity .2s}
-.ticker-coin:hover{opacity:.75}
-.ticker-symbol{font-family:'Space Mono',monospace;font-weight:700;font-size:.7rem;color:var(--dim);letter-spacing:.5px}
-.ticker-price{font-family:'Space Mono',monospace;font-weight:700;color:var(--text)}
-.ticker-change{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700}
-.ticker-tag{margin-left:auto;font-size:.6rem;color:var(--dim);font-family:'Space Mono',monospace;letter-spacing:.5px;opacity:.5}
-.ticker-loading{color:var(--dim);font-size:.72rem}
-@media(max-width:768px){.ticker-inner{gap:1rem;font-size:.7rem}.ticker-tag{display:none}}
+/* MARKET TICKER BAR */
+.market-bar{background:#0a0a0c;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.market-bar::-webkit-scrollbar{display:none}
+.market-scroll{display:flex;align-items:center;max-width:var(--mw,1200px);margin:0 auto;padding:.5rem 2rem;gap:0}
+.market-item{display:flex;align-items:center;gap:.75rem;padding:.35rem 1.5rem;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0}
+.market-item:last-child{border-right:none}
+.mi-left{display:flex;align-items:center;gap:.6rem}
+.mi-name{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;color:var(--dim);letter-spacing:.5px}
+.mi-price{font-family:'Space Mono',monospace;font-size:.82rem;font-weight:700;color:var(--text)}
+.mi-change{font-family:'Space Mono',monospace;font-size:.68rem;font-weight:700}
+.mi-spark{display:block;flex-shrink:0}
+@media(max-width:768px){.market-scroll{padding:.4rem 1rem;gap:0}.market-item{padding:.35rem 1rem}.mi-spark{display:none}}
