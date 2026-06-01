@@ -1,3 +1,8 @@
+// Fix Tools nav link
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  if(a.href.indexOf('/tools/car-affordability-calculator/')>-1)a.href='/tools/';
+});
+
 // Progress bar
 var pb=document.querySelector('.progress-bar');
 if(pb){window.addEventListener('scroll',function(){var h=document.documentElement;var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;pb.style.width=pct+'%'})}
@@ -26,7 +31,6 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
   wrap.appendChild(container);
   var nav=document.querySelector('nav');
   if(nav)nav.parentNode.insertBefore(wrap,nav.nextSibling);
-
   var script=document.createElement('script');
   script.type='text/javascript';
   script.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
@@ -54,7 +58,6 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
   var art=document.querySelector('article');
   if(!art)return;
   var path=window.location.pathname;
-
   var cta='';
   if(path.indexOf('/cars/')>-1){
     cta='<div class="article-cta"><h3>Planning to buy a car?</h3><p>Run the real numbers before you walk into the dealership.</p><a href="/tools/car-affordability-calculator/" class="cta-btn">Try the Car Affordability Calculator →</a></div>';
@@ -65,7 +68,6 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
   }else if(path.indexOf('/money/')>-1){
     cta='<div class="article-cta"><h3>Want to get your money right?</h3><p>Start with the foundation — an emergency fund and a budget that actually works.</p><a href="/money/budgeting-guide/" class="cta-btn">Read: Budgeting Guide →</a></div>';
   }
-
   if(cta){
     var div=document.createElement('div');
     div.innerHTML=cta;
@@ -73,7 +75,6 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
     if(shareBar){art.insertBefore(div.firstChild,shareBar)}
     else{art.appendChild(div.firstChild)}
   }
-
   var text=art.textContent||'';
   var hasProducts=text.match(/Fidelity|Vanguard|Schwab|Coinbase|Kraken|CarMax|KBB|Kelley Blue Book|Marcus|Ally Bank|Capital One|Credit Karma/i);
   if(hasProducts){
