@@ -14,60 +14,39 @@ if(bt){window.addEventListener('scroll',function(){if(window.scrollY>400){bt.cla
 // Copy link
 document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener('click',function(){navigator.clipboard.writeText(window.location.href);b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000)})});
 
-// Market Ticker Bar
+// TradingView Ticker Widget
 (function(){
-  var bar=document.createElement('div');
-  bar.className='market-bar';
-  bar.innerHTML='<div class="market-scroll"></div>';
+  var wrap=document.createElement('div');
+  wrap.className='tv-ticker-wrap';
+  var container=document.createElement('div');
+  container.className='tradingview-widget-container';
+  var widgetDiv=document.createElement('div');
+  widgetDiv.className='tradingview-widget-container__widget';
+  container.appendChild(widgetDiv);
+  wrap.appendChild(container);
   var nav=document.querySelector('nav');
-  if(nav)nav.parentNode.insertBefore(bar,nav.nextSibling);
+  if(nav)nav.parentNode.insertBefore(wrap,nav.nextSibling);
 
-  fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,dogecoin&order=market_cap_desc&sparkline=true&price_change_percentage=24h')
-    .then(function(r){return r.json()})
-    .then(function(coins){
-      var scroll=bar.querySelector('.market-scroll');
-      scroll.innerHTML='';
-      coins.forEach(function(coin){
-        var change=coin.price_change_percentage_24h||0;
-        var color=change>=0?'#22c55e':'#ef4444';
-        var arrow=change>=0?'▲':'▼';
-        var price=coin.current_price;
-        var priceStr=price>=1000?'$'+price.toLocaleString('en-US',{maximumFractionDigits:0}):'$'+price.toFixed(2);
-        var changeStr=arrow+' '+Math.abs(change).toFixed(2)+'%';
-        var sym=coin.symbol.toUpperCase();
-
-        var item=document.createElement('div');
-        item.className='market-item';
-        item.innerHTML=
-          '<div class="mi-left">'+
-            '<span class="mi-name">'+sym+'</span>'+
-            '<span class="mi-price">'+priceStr+'</span>'+
-            '<span class="mi-change" style="color:'+color+'">'+changeStr+'</span>'+
-          '</div>'+
-          '<canvas class="mi-spark" width="60" height="24"></canvas>';
-        scroll.appendChild(item);
-
-        // Draw sparkline
-        var canvas=item.querySelector('.mi-spark');
-        var ctx=canvas.getContext('2d');
-        var data=coin.sparkline_in_7d?coin.sparkline_in_7d.price.slice(-48):[];
-        if(data.length>1){
-          var min=Math.min.apply(null,data);
-          var max=Math.max.apply(null,data);
-          var range=max-min||1;
-          ctx.strokeStyle=color;
-          ctx.lineWidth=1.5;
-          ctx.beginPath();
-          data.forEach(function(v,i){
-            var x=(i/(data.length-1))*60;
-            var y=24-((v-min)/range)*20-2;
-            i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-          });
-          ctx.stroke();
-        }
-      });
-    })
-    .catch(function(){bar.style.display='none'});
+  var script=document.createElement('script');
+  script.type='text/javascript';
+  script.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+  script.async=true;
+  script.innerHTML=JSON.stringify({
+    "symbols":[
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"FOREXCOM:DJI","title":"Dow 30"},
+      {"proName":"BITSTAMP:BTCUSD","title":"Bitcoin"},
+      {"proName":"BITSTAMP:ETHUSD","title":"Ethereum"},
+      {"proName":"FOREXCOM:NSXUSD","title":"Nasdaq"},
+      {"description":"Gold","proName":"TVC:GOLD"}
+    ],
+    "showSymbolLogo":false,
+    "isTransparent":true,
+    "displayMode":"regular",
+    "colorTheme":"dark",
+    "locale":"en"
+  });
+  container.appendChild(script);
 })();
 
 // Auto-inject CTA on article pages
