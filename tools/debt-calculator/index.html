@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Debt Payoff Calculator — Avalanche vs Snowball | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script>
+<style>
+.dc{max-width:860px;margin:2rem auto 4rem;padding:0 2rem}
+.dc h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.3rem);letter-spacing:-1px;margin-bottom:.5rem}
+.dc .sub{color:var(--dim);font-size:.95rem;margin-bottom:2rem}
+.debt-form{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem}
+.debt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:.75rem;align-items:end;margin-bottom:.75rem}
+.debt-row label{font-size:.72rem;color:var(--dim);display:block;margin-bottom:.25rem}
+.debt-row input{width:100%;padding:.5rem .65rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.88rem;font-family:'Sora',sans-serif}
+.debt-row input:focus{outline:none;border-color:var(--accent)}
+.remove-btn{background:none;border:1px solid var(--border);border-radius:6px;color:#f87171;cursor:pointer;padding:.5rem .65rem;font-size:.88rem;transition:all .2s}
+.remove-btn:hover{border-color:#f87171}
+.add-row{display:inline-block;padding:.5rem 1rem;background:var(--bg-el);border:1px solid var(--border);border-radius:8px;color:var(--dim);font-size:.82rem;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s;margin-top:.5rem}
+.add-row:hover{border-color:var(--accent);color:var(--accent)}
+.extra-field{margin-top:1.25rem;display:flex;align-items:center;gap:1rem}
+.extra-field label{font-size:.82rem;color:var(--dim);white-space:nowrap}
+.extra-field input{width:140px;padding:.5rem .65rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.88rem;font-family:'Sora',sans-serif}
+.calc-btn{display:inline-block;margin-top:1.25rem;padding:.7rem 1.75rem;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;font-family:'Sora',sans-serif;transition:opacity .2s}
+.calc-btn:hover{opacity:.85}
+#results{display:none;margin-top:2rem}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.method-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:center}
+.method-card h3{font-family:'Space Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--dim);margin-bottom:1rem}
+.method-card .big{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;margin-bottom:.25rem}
+.method-card .detail{font-size:.82rem;color:var(--dim)}
+.method-card.winner{border-color:var(--green)}
+.method-card.winner h3{color:var(--green)}
+.savings-box{background:linear-gradient(135deg,rgba(52,211,153,.08),rgba(96,165,250,.08));border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:1.75rem;text-align:center;margin-bottom:2rem}
+.savings-box .sl{font-size:.85rem;color:var(--dim);margin-bottom:.35rem}
+.savings-box .sv{font-family:'Space Mono',monospace;font-size:2.2rem;font-weight:700;color:var(--green)}
+.savings-box .sn{font-size:.82rem;color:var(--dim);margin-top:.35rem}
+.payoff-order{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.payoff-order h3{font-size:.95rem;font-weight:700;margin-bottom:1rem}
+.po-item{display:flex;align-items:center;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--border)}
+.po-item:last-child{border-bottom:none}
+.po-num{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;color:var(--accent);width:24px}
+.po-name{font-weight:600;font-size:.88rem;flex:1}
+.po-detail{font-family:'Space Mono',monospace;font-size:.78rem;color:var(--dim);text-align:right}
+.disclaimer{font-size:.72rem;color:var(--dim);font-style:italic;margin-top:1.5rem;line-height:1.6}
+@media(max-width:700px){.debt-row{grid-template-columns:1fr 1fr;gap:.5rem}.method-grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="dc">
+<h1>Debt Payoff Calculator</h1>
+<p class="sub">Enter your debts below. See how long it takes to pay them off using the <strong>avalanche method</strong> (highest rate first) vs the <strong>snowball method</strong> (smallest balance first).</p>
+<div class="debt-form">
+<div id="debt-list">
+<div class="debt-row">
+<div><label>Debt name</label><input type="text" class="d-name" value="Credit Card" placeholder="e.g. Credit Card"></div>
+<div><label>Balance</label><input type="text" class="d-bal" value="5,000" inputmode="numeric"></div>
+<div><label>APR %</label><input type="text" class="d-rate" value="22" inputmode="decimal"></div>
+<div><label>Min payment</label><input type="text" class="d-min" value="125" inputmode="numeric"></div>
+<button class="remove-btn" onclick="this.closest('.debt-row').remove()">✕</button>
+</div>
+<div class="debt-row">
+<div><label>Debt name</label><input type="text" class="d-name" value="Car Loan" placeholder="e.g. Car Loan"></div>
+<div><label>Balance</label><input type="text" class="d-bal" value="12,000" inputmode="numeric"></div>
+<div><label>APR %</label><input type="text" class="d-rate" value="6.5" inputmode="decimal"></div>
+<div><label>Min payment</label><input type="text" class="d-min" value="350" inputmode="numeric"></div>
+<button class="remove-btn" onclick="this.closest('.debt-row').remove()">✕</button>
+</div>
+</div>
+<button class="add-row" onclick="addDebt()">+ Add another debt</button>
+<div class="extra-field">
+<label>Extra monthly payment:</label>
+<input type="text" id="extra" value="200" inputmode="numeric">
+</div>
+<button class="calc-btn" onclick="calculate()">Calculate Payoff Plan →</button>
+</div>
+<div id="results"></div>
+</div>
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+<script>
+function addDebt(){
+  var list=document.getElementById('debt-list');
+  var row=document.createElement('div');row.className='debt-row';
+  row.innerHTML='<div><label>Debt name</label><input type="text" class="d-name" placeholder="e.g. Student Loan"></div><div><label>Balance</label><input type="text" class="d-bal" inputmode="numeric"></div><div><label>APR %</label><input type="text" class="d-rate" inputmode="decimal"></div><div><label>Min payment</label><input type="text" class="d-min" inputmode="numeric"></div><button class="remove-btn" onclick="this.closest(\'.debt-row\').remove()">✕</button>';
+  list.appendChild(row);
+}
+function pn(s){return parseFloat(String(s).replace(/[^0-9.\-]/g,''))||0}
+function fmt(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function simulate(debts,extra,method){
+  var d=debts.map(function(x){return{name:x.name,bal:x.bal,rate:x.rate/100/12,min:x.min}});
+  var months=0;var totalPaid=0;var order=[];var maxMonths=600;
+  while(d.some(function(x){return x.bal>0})&&months<maxMonths){
+    months++;
+    var sorted=d.filter(function(x){return x.bal>0});
+    if(method==='avalanche')sorted.sort(function(a,b){return(b.rate-a.rate)});
+    else sorted.sort(function(a,b){return a.bal-b.bal});
+    var extraLeft=extra;
+    d.forEach(function(x){
+      if(x.bal<=0)return;
+      x.bal+=x.bal*x.rate;
+      var pay=Math.min(x.min,x.bal);
+      x.bal-=pay;totalPaid+=pay;
+    });
+    sorted.forEach(function(x){
+      if(x.bal<=0||extraLeft<=0)return;
+      var pay=Math.min(extraLeft,x.bal);
+      x.bal-=pay;extraLeft-=pay;totalPaid+=pay;
+      if(x.bal<=0&&order.indexOf(x.name)===-1)order.push(x.name);
+    });
+    d.forEach(function(x){if(x.bal<=0&&order.indexOf(x.name)===-1)order.push(x.name)});
+  }
+  return{months:months,totalPaid:totalPaid,order:order};
+}
+function calculate(){
+  var rows=document.querySelectorAll('.debt-row');
+  var debts=[];
+  rows.forEach(function(r){
+    var name=r.querySelector('.d-name').value||'Debt';
+    var bal=pn(r.querySelector('.d-bal').value);
+    var rate=pn(r.querySelector('.d-rate').value);
+    var min=pn(r.querySelector('.d-min').value);
+    if(bal>0)debts.push({name:name,bal:bal,rate:rate,min:min});
+  });
+  if(debts.length===0)return;
+  var extra=pn(document.getElementById('extra').value);
+  var av=simulate(debts,extra,'avalanche');
+  var sb=simulate(debts,extra,'snowball');
+  var avYrs=Math.floor(av.months/12);var avMo=av.months%12;
+  var sbYrs=Math.floor(sb.months/12);var sbMo=sb.months%12;
+  var winner=av.totalPaid<=sb.totalPaid?'avalanche':'snowball';
+  var savings=Math.abs(av.totalPaid-sb.totalPaid);
+  var html='<div class="method-grid">';
+  html+='<div class="method-card'+(winner==='avalanche'?' winner':'')+'"><h3>Avalanche'+(winner==='avalanche'?' ✓ Best':'')+'</h3><div class="big" style="color:'+(winner==='avalanche'?'var(--green)':'var(--text)')+'">'+avYrs+'y '+avMo+'m</div><div class="detail">Total paid: '+fmt(av.totalPaid)+'</div></div>';
+  html+='<div class="method-card'+(winner==='snowball'?' winner':'')+'"><h3>Snowball'+(winner==='snowball'?' ✓ Best':'')+'</h3><div class="big" style="color:'+(winner==='snowball'?'var(--green)':'var(--text)')+'">'+sbYrs+'y '+sbMo+'m</div><div class="detail">Total paid: '+fmt(sb.totalPaid)+'</div></div>';
+  html+='</div>';
+  if(savings>10){
+    html+='<div class="savings-box"><div class="sl">'+( winner==='avalanche'?'Avalanche':'Snowball')+' saves you</div><div class="sv">'+fmt(savings)+'</div><div class="sn">in total interest paid</div></div>';
+  }
+  html+='<div class="payoff-order"><h3>Avalanche Order (recommended)</h3>';
+  av.order.forEach(function(name,i){
+    var orig=debts.find(function(d){return d.name===name});
+    html+='<div class="po-item"><span class="po-num">#'+(i+1)+'</span><span class="po-name">'+name+'</span><span class="po-detail">'+( orig?orig.rate+'% APR · '+fmt(orig.bal):'')+'</span></div>';
+  });
+  html+='</div>';
+  html+='<a href="/money/debt-vs-invest/" style="display:inline-block;margin-top:1rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.9rem">← Read: Should You Pay Off Debt or Invest?</a>';
+  html+='<p class="disclaimer">Assumes fixed minimum payments and constant APR. Actual results vary based on payment timing, rate changes, and fees.</p>';
+  document.getElementById('results').innerHTML=html;
+  document.getElementById('results').style.display='block';
+}
+</script>
+</body></html>
