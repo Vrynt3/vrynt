@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Financial Glossary — Every Term You Need to Know | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script>
+<style>
+.gls{max-width:800px;margin:2rem auto 4rem;padding:0 2rem}
+.gls h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.3rem);letter-spacing:-1px;margin-bottom:.5rem}
+.gls .sub{color:var(--dim);font-size:.95rem;margin-bottom:1.5rem}
+.gls-search{width:100%;padding:.75rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;font-family:'Sora',sans-serif;margin-bottom:2rem}
+.gls-search:focus{outline:none;border-color:var(--accent)}
+.gls-search::placeholder{color:var(--dim)}
+.letter-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:2rem}
+.letter-nav a{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;color:var(--dim);text-decoration:none;padding:.3rem .5rem;border:1px solid var(--border);border-radius:4px;transition:all .2s}
+.letter-nav a:hover{color:var(--accent);border-color:var(--accent)}
+.letter-head{font-family:'Space Mono',monospace;font-size:1.5rem;font-weight:700;color:var(--accent);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.term{margin-bottom:1.5rem}
+.term h3{font-size:1rem;font-weight:700;margin-bottom:.25rem}
+.term p{color:var(--dim);font-size:.88rem;line-height:1.6}
+.term a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.82rem}
+.term a:hover{text-decoration:underline}
+.count{font-size:.82rem;color:var(--dim);margin-bottom:2rem}
+</style></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="gls">
+<h1>Financial Glossary</h1>
+<p class="sub">Every financial term you need to know, explained in plain English.</p>
+<input type="text" class="gls-search" id="gsearch" placeholder="Search terms..." oninput="filterTerms()">
+<div class="count" id="gcount"></div>
+<div id="terms-list"></div>
+</div>
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+<script>
+var terms=[
+{t:"401(k)",d:"An employer-sponsored retirement account where contributions are made pre-tax. Many employers match a percentage of your contributions.",l:"/investing/employer-match/"},
+{t:"529 Plan",d:"A tax-advantaged savings plan for education expenses. Earnings grow tax-free when used for qualified education costs.",l:"/investing/open-529-before-baby-born/"},
+{t:"APR (Annual Percentage Rate)",d:"The yearly interest rate charged on a loan or credit card, including fees. A 22% APR on a credit card means you pay 22% per year on unpaid balances."},
+{t:"APY (Annual Percentage Yield)",d:"The actual rate of return on a savings account or investment, accounting for compound interest. Higher than the base rate because interest earns interest."},
+{t:"Amortization",d:"The process of paying off a loan through regular payments. Early payments are mostly interest; later payments are mostly principal."},
+{t:"Asset Allocation",d:"How you divide your investments between stocks, bonds, and cash. Younger investors typically hold more stocks; older investors add more bonds.",l:"/investing/three-fund-portfolio/"},
+{t:"Bear Market",d:"A market decline of 20% or more from recent highs. Bear markets are painful but historically temporary — the market has always recovered."},
+{t:"Bitcoin",d:"The first and largest cryptocurrency, designed as decentralized digital money with a fixed supply of 21 million coins.",l:"/crypto/bitcoin-vs-ethereum/"},
+{t:"Blockchain",d:"A distributed digital ledger that records transactions across many computers. The technology behind Bitcoin and other cryptocurrencies."},
+{t:"Bond",d:"A loan you make to a government or corporation. They pay you interest on a schedule and return your principal at maturity.",l:"/investing/how-bonds-work/"},
+{t:"Bull Market",d:"A sustained period of rising prices, typically defined as a 20%+ gain from recent lows."},
+{t:"Capital Gains",d:"Profit from selling an asset for more than you paid. Short-term gains (held under a year) are taxed as income; long-term gains get preferential rates.",l:"/crypto/bitcoin-taxes/"},
+{t:"Compound Interest",d:"Interest earned on both your original principal and previously earned interest. The reason starting early matters so much for retirement savings."},
+{t:"CPO (Certified Pre-Owned)",d:"A used vehicle that has been inspected, reconditioned, and backed by a manufacturer warranty extension.",l:"/cars/cpo-vs-used/"},
+{t:"Credit Score",d:"A three-digit number (300-850) that represents your creditworthiness. Based on payment history, utilization, account age, and other factors.",l:"/money/credit-score-explained/"},
+{t:"Credit Utilization",d:"The percentage of your available credit you're using. Below 30% is good; below 10% is optimal."},
+{t:"Cryptocurrency",d:"Digital currency that uses cryptography for security and operates on a decentralized network (blockchain) without central bank control."},
+{t:"DCA (Dollar-Cost Averaging)",d:"Investing a fixed amount on a regular schedule regardless of price. Reduces the impact of volatility and eliminates timing decisions.",l:"/investing/dollar-cost-averaging/"},
+{t:"Deductible",d:"The amount you pay out of pocket before insurance coverage kicks in. Higher deductibles mean lower premiums.",l:"/money/how-insurance-works/"},
+{t:"Depreciation",d:"The decrease in an asset's value over time. Cars depreciate fastest in the first 3 years — a key factor in lease vs buy decisions.",l:"/cars/leasing-vs-buying/"},
+{t:"Diversification",d:"Spreading investments across different asset classes, sectors, and geographies to reduce risk. Don't put all your eggs in one basket."},
+{t:"Dividend",d:"A payment made by a company to its shareholders from profits. Some investors build portfolios focused on dividend-paying stocks for income."},
+{t:"Emergency Fund",d:"3-6 months of essential expenses saved in a readily accessible account. The foundation of financial security.",l:"/money/emergency-fund/"},
+{t:"Equity",d:"Ownership. In a home, it's the difference between what it's worth and what you owe. In investing, stocks represent equity in a company."},
+{t:"ETF (Exchange-Traded Fund)",d:"A fund that trades on a stock exchange like a regular stock. Can track an index, sector, or asset class. Usually lower fees than mutual funds.",l:"/investing/etf-vs-index/"},
+{t:"Ethereum",d:"The second-largest cryptocurrency, designed as a programmable blockchain platform for decentralized applications.",l:"/crypto/bitcoin-vs-ethereum/"},
+{t:"Expense Ratio",d:"The annual fee charged by a mutual fund or ETF, expressed as a percentage of your investment. 0.03% is excellent; 1%+ is expensive.",l:"/investing/expense-ratios-explained/"},
+{t:"F&I (Finance and Insurance)",d:"The back office at a car dealership where you sign paperwork and are offered add-on products like extended warranties and GAP insurance.",l:"/cars/fi-office-explained/"},
+{t:"FICO Score",d:"The most widely used credit scoring model, ranging from 300-850. Most lenders use FICO scores to make lending decisions."},
+{t:"Fiduciary",d:"A financial advisor legally required to act in your best interest. Fee-only fiduciaries don't earn commissions on products they recommend."},
+{t:"GAP Insurance",d:"Covers the difference between what your car is worth and what you still owe if it's totaled. Important when you're upside down on a loan.",l:"/cars/gap-insurance/"},
+{t:"Halving",d:"A Bitcoin event every ~4 years where the mining reward is cut in half, reducing new supply. Historically followed by price increases.",l:"/crypto/bitcoin-halving/"},
+{t:"HYSA (High-Yield Savings Account)",d:"A savings account paying significantly more interest than traditional banks — typically 4-5% vs 0.01%.",l:"/money/high-yield-savings/"},
+{t:"Index Fund",d:"A fund that tracks a market index like the S&P 500 by holding all (or most) of its stocks. Low fees, broad diversification, hard to beat long-term.",l:"/investing/three-fund-portfolio/"},
+{t:"Inflation",d:"The rate at which prices rise over time, reducing purchasing power. The reason $1 today buys less than $1 ten years ago."},
+{t:"Invoice Price",d:"What the dealer paid the manufacturer for a new vehicle. Lower than MSRP but higher than the dealer's true cost after holdback.",l:"/cars/dealer-invoice/"},
+{t:"IRA (Individual Retirement Account)",d:"A tax-advantaged account for retirement savings. Traditional IRAs offer a tax deduction now; Roth IRAs offer tax-free withdrawals later.",l:"/investing/roth-vs-traditional/"},
+{t:"Liability",d:"Something you owe — debts, loans, mortgages. The opposite of an asset."},
+{t:"Liquidity",d:"How quickly an asset can be converted to cash. Savings accounts are highly liquid; real estate is not."},
+{t:"MSRP",d:"Manufacturer's Suggested Retail Price — the sticker price on a new car. Not always what you'll pay; negotiation and market conditions matter.",l:"/cars/negotiate-car-deal/"},
+{t:"Mutual Fund",d:"A pooled investment that combines money from many investors to buy a diversified portfolio. Managed actively or passively (index funds)."},
+{t:"Net Worth",d:"Everything you own (assets) minus everything you owe (liabilities). The single best measure of financial health."},
+{t:"PMI (Private Mortgage Insurance)",d:"Insurance required when your down payment is less than 20%. Adds $100-300/month to your mortgage until you reach 20% equity.",l:"/money/save-down-payment/"},
+{t:"Portfolio",d:"Your collection of investments — stocks, bonds, funds, crypto, and other assets considered as a whole."},
+{t:"Pre-Approval",d:"A lender's preliminary commitment to loan you a specific amount based on your credit and income. Useful when house or car shopping."},
+{t:"Principal",d:"The original amount of a loan or investment, not including interest or earnings."},
+{t:"Refinancing",d:"Replacing an existing loan with a new one, typically at a lower interest rate or better terms.",l:"/money/refinancing-mortgage/"},
+{t:"Roth IRA",d:"A retirement account funded with after-tax dollars. Earnings and withdrawals are tax-free in retirement.",l:"/investing/roth-vs-traditional/"},
+{t:"S&P 500",d:"An index tracking the 500 largest U.S. publicly traded companies. The most common benchmark for U.S. stock market performance."},
+{t:"Stablecoin",d:"A cryptocurrency pegged to a stable asset like the U.S. dollar. Used for trading, yield, and moving money in the crypto ecosystem.",l:"/crypto/stablecoins/"},
+{t:"Target-Date Fund",d:"A fund that automatically adjusts its stock/bond mix as you approach a target retirement year. Convenient but often higher fees.",l:"/investing/target-date-vs-index-funds/"},
+{t:"Vesting",d:"The process by which you earn full ownership of employer-contributed retirement funds over time.",l:"/investing/employer-match/"},
+{t:"Yield",d:"The income return on an investment, usually expressed as a percentage. Bond yield, dividend yield, and savings account APY are all forms of yield."}
+];
+
+function renderTerms(list){
+  var html='';var letters={};
+  list.forEach(function(t){var l=t.t[0].toUpperCase();if(l>='0'&&l<='9')l='#';if(!letters[l])letters[l]=[];letters[l].push(t)});
+  var keys=Object.keys(letters).sort();
+  keys.forEach(function(l){
+    html+='<div class="letter-head" id="letter-'+l+'">'+l+'</div>';
+    letters[l].forEach(function(t){
+      html+='<div class="term"><h3>'+t.t+'</h3><p>'+t.d+'</p>';
+      if(t.l)html+='<a href="'+t.l+'">Read more →</a>';
+      html+='</div>';
+    });
+  });
+  document.getElementById('terms-list').innerHTML=html;
+  document.getElementById('gcount').textContent=list.length+' terms';
+}
+function filterTerms(){
+  var q=document.getElementById('gsearch').value.toLowerCase();
+  if(!q){renderTerms(terms);return}
+  var filtered=terms.filter(function(t){return t.t.toLowerCase().indexOf(q)>-1||t.d.toLowerCase().indexOf(q)>-1});
+  renderTerms(filtered);
+}
+renderTerms(terms);
+</script>
+</body></html>
