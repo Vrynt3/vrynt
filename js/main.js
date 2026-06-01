@@ -14,13 +14,49 @@ if(bt){window.addEventListener('scroll',function(){if(window.scrollY>400){bt.cla
 // Copy link
 document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener('click',function(){navigator.clipboard.writeText(window.location.href);b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000)})});
 
+// Live BTC/ETH Ticker
+(function(){
+  var ticker=document.createElement('div');
+  ticker.className='crypto-ticker';
+  ticker.innerHTML='<div class="ticker-inner"><span class="ticker-loading">Loading prices...</span></div>';
+  var nav=document.querySelector('nav');
+  if(nav)nav.parentNode.insertBefore(ticker,nav.nextSibling);
+
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true')
+    .then(function(r){return r.json()})
+    .then(function(d){
+      var btcPrice=d.bitcoin.usd;
+      var btcChange=d.bitcoin.usd_24h_change;
+      var ethPrice=d.ethereum.usd;
+      var ethChange=d.ethereum.usd_24h_change;
+      var btcColor=btcChange>=0?'var(--green)':'#f87171';
+      var ethColor=ethChange>=0?'var(--green)':'#f87171';
+      var btcArrow=btcChange>=0?'▲':'▼';
+      var ethArrow=ethChange>=0?'▲':'▼';
+      ticker.querySelector('.ticker-inner').innerHTML=
+        '<a href="/crypto/" class="ticker-coin">'+
+          '<span class="ticker-symbol">₿ BTC</span>'+
+          '<span class="ticker-price">$'+btcPrice.toLocaleString('en-US',{maximumFractionDigits:0})+'</span>'+
+          '<span class="ticker-change" style="color:'+btcColor+'">'+btcArrow+' '+Math.abs(btcChange).toFixed(1)+'%</span>'+
+        '</a>'+
+        '<a href="/crypto/bitcoin-vs-ethereum/" class="ticker-coin">'+
+          '<span class="ticker-symbol">Ξ ETH</span>'+
+          '<span class="ticker-price">$'+ethPrice.toLocaleString('en-US',{maximumFractionDigits:0})+'</span>'+
+          '<span class="ticker-change" style="color:'+ethColor+'">'+ethArrow+' '+Math.abs(ethChange).toFixed(1)+'%</span>'+
+        '</a>'+
+        '<span class="ticker-tag">Live via CoinGecko</span>';
+    })
+    .catch(function(){
+      ticker.querySelector('.ticker-inner').innerHTML='<span class="ticker-tag">Prices temporarily unavailable</span>';
+    });
+})();
+
 // Auto-inject CTA on article pages
 (function(){
   var art=document.querySelector('article');
   if(!art)return;
   var path=window.location.pathname;
 
-  // Determine CTA based on category
   var cta='';
   if(path.indexOf('/cars/')>-1){
     cta='<div class="article-cta"><h3>Planning to buy a car?</h3><p>Run the real numbers before you walk into the dealership.</p><a href="/tools/car-affordability-calculator/" class="cta-btn">Try the Car Affordability Calculator →</a></div>';
@@ -40,7 +76,6 @@ document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener(
     else{art.appendChild(div.firstChild)}
   }
 
-  // Add affiliate disclosure to articles that mention financial products
   var text=art.textContent||'';
   var hasProducts=text.match(/Fidelity|Vanguard|Schwab|Coinbase|Kraken|CarMax|KBB|Kelley Blue Book|Marcus|Ally Bank|Capital One|Credit Karma/i);
   if(hasProducts){
