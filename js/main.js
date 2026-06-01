@@ -1,108 +1,106 @@
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0C0C0E;--bg-card:#16161A;--bg-el:#1E1E23;--text:#EAEAEA;--dim:#8A8A8E;--accent:#FF6B35;--green:#34D399;--blue:#60A5FA;--purple:#A78BFA;--border:#2A2A2F;--mw:1200px}
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
-nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--mw);margin:0 auto;padding:1.5rem 2rem}
-.logo{font-family:'Space Mono',monospace;font-weight:700;font-size:1.4rem;color:var(--text);text-decoration:none;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:1.75rem;list-style:none}
-.nav-links a{text-decoration:none;color:var(--dim);font-weight:500;font-size:.85rem;letter-spacing:.3px;transition:color .25s}
-.nav-links a:hover{color:var(--text)}
-.nav-links a.active{color:var(--text);font-weight:700}
+// Progress bar
+var pb=document.querySelector('.progress-bar');
+if(pb){window.addEventListener('scroll',function(){var h=document.documentElement;var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;pb.style.width=pct+'%'})}
 
-/* ARTICLE STYLES */
-article{max-width:720px;margin:2rem auto 4rem;padding:0 2rem}
-.breadcrumb{font-size:.82rem;color:var(--dim);margin-bottom:2rem}
-.breadcrumb a{color:var(--accent);text-decoration:none}
-article h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.12;letter-spacing:-1px;margin-bottom:1rem}
-.meta{color:var(--dim);font-size:.85rem;font-family:'Space Mono',monospace;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
-article h2{font-weight:700;font-size:1.4rem;letter-spacing:-.3px;margin:2.5rem 0 1rem}
-article h3{font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
-article p{margin-bottom:1.25rem;color:var(--text)}
-.callout{background:var(--bg-card);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;border-radius:0 10px 10px 0;margin:1.5rem 0;font-size:.92rem}
-.callout strong{color:var(--accent)}
-.callout-green{border-left-color:var(--green)}.callout-green strong{color:var(--green)}
-.callout-blue{border-left-color:var(--blue)}.callout-blue strong{color:var(--blue)}
-.callout-purple{border-left-color:var(--purple)}.callout-purple strong{color:var(--purple)}
-.callout-bear{border-left-color:#f87171}.callout-bear strong{color:#f87171}
-.callout-bull{border-left-color:var(--green)}.callout-bull strong{color:var(--green)}
-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
-th{text-align:left;padding:.75rem 1rem;background:var(--bg-el);font-weight:700;border-bottom:2px solid var(--border);color:var(--text)}
-td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--dim)}
-.highlight{color:var(--green);font-weight:700}
+// Mobile menu
+var mt=document.querySelector('.menu-toggle');
+var nl=document.querySelector('.nav-links');
+if(mt&&nl){mt.addEventListener('click',function(){nl.classList.toggle('open');mt.textContent=nl.classList.contains('open')?'✕':'☰'})}
 
-/* CATEGORY PAGE */
-.page-header{max-width:var(--mw);margin:3rem auto 2.5rem;padding:0 2rem}
-.page-header h1{font-weight:800;font-size:2.2rem;letter-spacing:-1px;margin-bottom:.5rem}
-.page-header p{color:var(--dim);font-size:1.05rem}
-.grid-section{max-width:var(--mw);margin:0 auto 4rem;padding:0 2rem}
-.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-3px);border-color:#3A3A40}
-.card h3{font-size:1.15rem;font-weight:700;line-height:1.3;letter-spacing:-.3px;margin-bottom:.5rem}
-.card p{color:var(--dim);font-size:.88rem;line-height:1.6;flex-grow:1}
-.card-meta{margin-top:1.25rem;font-size:.72rem;color:var(--dim);padding-top:1rem;border-top:1px solid var(--border);font-family:'Space Mono',monospace}
+// Back to top
+var bt=document.querySelector('.back-top');
+if(bt){window.addEventListener('scroll',function(){if(window.scrollY>400){bt.classList.add('show')}else{bt.classList.remove('show')}});bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})}
 
-footer{max-width:var(--mw);margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--dim)}
-footer a{color:var(--dim);text-decoration:none}
-footer a:hover{color:var(--text)}
+// Copy link
+document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener('click',function(){navigator.clipboard.writeText(window.location.href);b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000)})});
 
-@media(max-width:768px){.nav-links{display:none}.article-grid{grid-template-columns:1fr}}
+// Market Ticker Bar
+(function(){
+  var bar=document.createElement('div');
+  bar.className='market-bar';
+  bar.innerHTML='<div class="market-scroll"></div>';
+  var nav=document.querySelector('nav');
+  if(nav)nav.parentNode.insertBefore(bar,nav.nextSibling);
 
-/* PROGRESS BAR */
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple));z-index:1000;transition:width .1s;width:0}
+  fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,dogecoin&order=market_cap_desc&sparkline=true&price_change_percentage=24h')
+    .then(function(r){return r.json()})
+    .then(function(coins){
+      var scroll=bar.querySelector('.market-scroll');
+      scroll.innerHTML='';
+      coins.forEach(function(coin){
+        var change=coin.price_change_percentage_24h||0;
+        var color=change>=0?'#22c55e':'#ef4444';
+        var arrow=change>=0?'▲':'▼';
+        var price=coin.current_price;
+        var priceStr=price>=1000?'$'+price.toLocaleString('en-US',{maximumFractionDigits:0}):'$'+price.toFixed(2);
+        var changeStr=arrow+' '+Math.abs(change).toFixed(2)+'%';
+        var sym=coin.symbol.toUpperCase();
 
-/* STICKY NAV */
-nav{position:sticky;top:0;z-index:999;background:rgba(12,12,14,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+        var item=document.createElement('div');
+        item.className='market-item';
+        item.innerHTML=
+          '<div class="mi-left">'+
+            '<span class="mi-name">'+sym+'</span>'+
+            '<span class="mi-price">'+priceStr+'</span>'+
+            '<span class="mi-change" style="color:'+color+'">'+changeStr+'</span>'+
+          '</div>'+
+          '<canvas class="mi-spark" width="60" height="24"></canvas>';
+        scroll.appendChild(item);
 
-/* MOBILE MENU */
-.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
-@media(max-width:768px){.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-card);border-bottom:1px solid var(--border);flex-direction:column;padding:1.5rem 2rem;gap:1rem}.nav-links.open{display:flex}}
+        // Draw sparkline
+        var canvas=item.querySelector('.mi-spark');
+        var ctx=canvas.getContext('2d');
+        var data=coin.sparkline_in_7d?coin.sparkline_in_7d.price.slice(-48):[];
+        if(data.length>1){
+          var min=Math.min.apply(null,data);
+          var max=Math.max.apply(null,data);
+          var range=max-min||1;
+          ctx.strokeStyle=color;
+          ctx.lineWidth=1.5;
+          ctx.beginPath();
+          data.forEach(function(v,i){
+            var x=(i/(data.length-1))*60;
+            var y=24-((v-min)/range)*20-2;
+            i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+          });
+          ctx.stroke();
+        }
+      });
+    })
+    .catch(function(){bar.style.display='none'});
+})();
 
-/* BACK TO TOP */
-.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border);color:var(--text);font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all .25s;z-index:998}
-.back-top:hover{background:var(--accent);border-color:var(--accent);color:#0C0C0E}
-.back-top.show{display:flex}
+// Auto-inject CTA on article pages
+(function(){
+  var art=document.querySelector('article');
+  if(!art)return;
+  var path=window.location.pathname;
 
-/* SHARE BUTTON */
-.share-bar{display:flex;gap:.75rem;align-items:center;margin:2.5rem 0;padding-top:1.5rem;border-top:1px solid var(--border)}
-.share-btn{padding:.45rem 1rem;border-radius:8px;background:var(--bg-el);border:1px solid var(--border);color:var(--dim);font-size:.8rem;font-family:'Sora',sans-serif;cursor:pointer;transition:all .2s}
-.share-btn:hover{border-color:var(--accent);color:var(--accent)}
-.share-label{font-size:.78rem;color:var(--dim);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+  var cta='';
+  if(path.indexOf('/cars/')>-1){
+    cta='<div class="article-cta"><h3>Planning to buy a car?</h3><p>Run the real numbers before you walk into the dealership.</p><a href="/tools/car-affordability-calculator/" class="cta-btn">Try the Car Affordability Calculator →</a></div>';
+  }else if(path.indexOf('/investing/')>-1){
+    cta='<div class="article-cta"><h3>How much are fees costing you?</h3><p>The difference between a high-fee fund and an index fund can be six figures. See your number.</p><a href="/tools/fee-calculator/" class="cta-btn">Try the 401(k) Fee Calculator →</a></div>';
+  }else if(path.indexOf('/crypto/')>-1){
+    cta='<div class="article-cta"><h3>Got a plan for taking profits?</h3><p>A sell ladder takes the emotion out of the hardest decision in crypto.</p><a href="/crypto/bitcoin-sell-ladder/" class="cta-btn">Read: How to Build a Sell Ladder →</a></div>';
+  }else if(path.indexOf('/money/')>-1){
+    cta='<div class="article-cta"><h3>Want to get your money right?</h3><p>Start with the foundation — an emergency fund and a budget that actually works.</p><a href="/money/budgeting-guide/" class="cta-btn">Read: Budgeting Guide →</a></div>';
+  }
 
-/* RELATED ARTICLES */
-.related{max-width:720px;margin:0 auto 4rem;padding:0 2rem}
-.related h3{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--dim);margin-bottom:1.25rem}
-.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
-.related-card:hover{transform:translateY(-2px);border-color:#3A3A40}
-.related-card .rtag{font-size:.65rem;font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.5rem;display:block}
-.related-card h4{font-size:.95rem;font-weight:600;line-height:1.3}
-@media(max-width:640px){.related-grid{grid-template-columns:1fr}}
+  if(cta){
+    var div=document.createElement('div');
+    div.innerHTML=cta;
+    var shareBar=art.querySelector('.share-bar');
+    if(shareBar){art.insertBefore(div.firstChild,shareBar)}
+    else{art.appendChild(div.firstChild)}
+  }
 
-/* AUTHOR CARD */
-.author-card{display:flex;gap:1.25rem;align-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2.5rem 0}
-.author-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:1.1rem;flex-shrink:0}
-.author-info .aname{font-weight:700;font-size:.92rem;margin-bottom:.15rem}
-.author-info .abio{font-size:.8rem;color:var(--dim);line-height:1.5}
-
-/* AUTO CTA BAR */
-.article-cta{background:linear-gradient(135deg,#1a1220 0%,#16161A 50%,#111a16 100%);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2.5rem 0;text-align:center}
-.article-cta h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
-.article-cta p{color:var(--dim);font-size:.88rem;margin-bottom:1.25rem}
-.article-cta .cta-btn{display:inline-block;padding:.65rem 1.5rem;background:var(--accent);color:#fff;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;transition:opacity .2s}
-.article-cta .cta-btn:hover{opacity:.85}
-
-/* AFFILIATE DISCLOSURE */
-.affiliate-note{font-size:.75rem;color:var(--dim);font-style:italic;margin:1.5rem 0;padding-top:1rem;border-top:1px solid var(--border)}
-/* MARKET TICKER BAR */
-.market-bar{background:#0a0a0c;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.market-bar::-webkit-scrollbar{display:none}
-.market-scroll{display:flex;align-items:center;max-width:var(--mw,1200px);margin:0 auto;padding:.5rem 2rem;gap:0}
-.market-item{display:flex;align-items:center;gap:.75rem;padding:.35rem 1.5rem;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0}
-.market-item:last-child{border-right:none}
-.mi-left{display:flex;align-items:center;gap:.6rem}
-.mi-name{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;color:var(--dim);letter-spacing:.5px}
-.mi-price{font-family:'Space Mono',monospace;font-size:.82rem;font-weight:700;color:var(--text)}
-.mi-change{font-family:'Space Mono',monospace;font-size:.68rem;font-weight:700}
-.mi-spark{display:block;flex-shrink:0}
-@media(max-width:768px){.market-scroll{padding:.4rem 1rem;gap:0}.market-item{padding:.35rem 1rem}.mi-spark{display:none}}
+  var text=art.textContent||'';
+  var hasProducts=text.match(/Fidelity|Vanguard|Schwab|Coinbase|Kraken|CarMax|KBB|Kelley Blue Book|Marcus|Ally Bank|Capital One|Credit Karma/i);
+  if(hasProducts){
+    var disc=document.createElement('p');
+    disc.className='affiliate-note';
+    disc.textContent='Some links in this article may be affiliate links. If you sign up or make a purchase through them, Vrynt may earn a small commission at no extra cost to you. We only recommend products and services we genuinely believe in.';
+    art.appendChild(disc);
+  }
+})();
