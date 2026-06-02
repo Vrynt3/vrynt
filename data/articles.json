@@ -1,0 +1,542 @@
+[
+  {
+    "title": "Dealer Add-Ons to Always Refuse",
+    "url": "/cars/dealer-add-ons/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "The F&amp;I menu is mostly margin. What to wave off, and the 2 worth keeping.",
+    "readTime": "7 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "Stop Negotiating the Monthly Payment",
+    "url": "/cars/monthly-payment-trap/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "It hides four numbers the dealer can move against you. Negotiate these instead.",
+    "readTime": "7 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "Out-the-Door Price: The Only Number That Matters",
+    "url": "/cars/out-the-door-price/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "Every other car number is noise. This is the one that decides what you pay.",
+    "readTime": "6 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "The Order of Operations",
+    "url": "/investing/order-of-operations/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "Where every extra dollar should go first, ranked by guaranteed return.",
+    "readTime": "8 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "The HSA Retirement Hack",
+    "url": "/investing/hsa-retirement/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The only triple-tax-free account there is &mdash; and almost nobody uses it right.",
+    "readTime": "7 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "BTC Weekly — June 2, 2026",
+    "url": "/crypto/btc-weekly-jun-2-2026/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "The $70K line breaks, ETF outflow streak hits 10 days, leverage flushed.",
+    "readTime": "6 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "Bitcoin ETF vs Holding Your Own Coins",
+    "url": "/crypto/bitcoin-etf-vs-self-custody/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "A ticker in your brokerage or keys in your pocket. Which one fits you?",
+    "readTime": "7 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "HELOCs Explained: Benefits and Risks",
+    "url": "/money/heloc-explained/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "A cheap, flexible loan &mdash; secured by your house. The traps people miss before signing.",
+    "readTime": "8 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "The Financial Checklist Before Baby",
+    "url": "/money/financial-checklist-before-baby/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The money moves to make before the due date, in order of importance.",
+    "readTime": "8 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "Debt Snowball vs Avalanche",
+    "url": "/money/debt-snowball-vs-avalanche/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "One's mathematically best. The other actually gets finished. Which fits you?",
+    "readTime": "6 min",
+    "date": "2026-06-02"
+  },
+  {
+    "title": "Leasing vs Buying: The Real Math",
+    "url": "/cars/leasing-vs-buying/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "Neither option is a scam. The right choice depends on how long you keep cars.",
+    "readTime": "9 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "What Happens in the F&I Office",
+    "url": "/cars/fi-office-explained/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "The back office where profit is made. What they'll offer and what's worth it.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How Trade-In Values Actually Work",
+    "url": "/cars/trade-in-values/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "Why the dealer's number doesn't match yours, and how to close the gap.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "The Best Time of Year to Buy a Car",
+    "url": "/cars/best-time-to-buy/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "When dealership targets align with your wallet.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Red Flags When Buying Used",
+    "url": "/cars/used-car-red-flags/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "What to look for on the lot, in the test drive, and in the paperwork.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Extended Warranties: Which Are Worth It",
+    "url": "/cars/extended-warranties/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "Some cars need them, some don't. Here's how to decide.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "GAP Insurance: Dealer vs Insurer",
+    "url": "/cars/gap-insurance/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "Same coverage, fraction of the cost.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Certified Pre-Owned vs Used",
+    "url": "/cars/cpo-vs-used/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "When the CPO premium is worth it and when to skip it.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Negotiate a Car Deal",
+    "url": "/cars/negotiate-car-deal/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "From someone who works at a dealership. Both sides can win.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "What Is Dealer Invoice Price?",
+    "url": "/cars/dealer-invoice/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "What the dealer actually paid, and why it's not the full picture.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "What Expense Ratios Are",
+    "url": "/investing/expense-ratios-explained/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The tiny number silently eating six figures of your retirement.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Roll Over a 401(k)",
+    "url": "/investing/rollover-401k/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "30 minutes that could save you thousands in fees.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Roth IRA vs Traditional IRA",
+    "url": "/investing/roth-vs-traditional/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "Tax break now or tax-free later? Here's how to decide.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "The 3-Fund Portfolio",
+    "url": "/investing/three-fund-portfolio/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The simplest way to invest that beats most professionals.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Retirement Savings by 30, 35, 40",
+    "url": "/investing/retirement-by-age/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The benchmarks and what to do if you're behind.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Employer Match: Free Money",
+    "url": "/investing/employer-match/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The guaranteed 50-100% return most people leave on the table.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Dollar-Cost Averaging",
+    "url": "/investing/dollar-cost-averaging/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "Does it actually work? What the data says.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Fidelity vs Vanguard vs Schwab",
+    "url": "/investing/fidelity-vs-vanguard-vs-schwab/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The honest answer: it barely matters. But here are the differences.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "ETFs vs Index Funds",
+    "url": "/investing/etf-vs-index/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "Different structures, same destination. When each one makes sense.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How Bonds Work",
+    "url": "/investing/how-bonds-work/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The boring investment that protects your portfolio when stocks crash.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "BTC Weekly — May 29, 2026",
+    "url": "/crypto/btc-weekly-may-29-2026/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "ETF bleeding, $70K line in the sand, whale outflows spike.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Dollar-Cost Averaging Into Bitcoin",
+    "url": "/crypto/dca-bitcoin/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Does the data support DCA? Here's what the numbers say.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Bitcoin Taxes Explained",
+    "url": "/crypto/bitcoin-taxes/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Every sale is taxable. What you owe and how to track it.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Cold Storage vs Hot Wallets",
+    "url": "/crypto/cold-vs-hot-wallets/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Keep your crypto safe. When to use each type.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Crypto Scams to Watch Out For",
+    "url": "/crypto/crypto-scams/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Billions lost every year. How to spot and avoid them.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Bitcoin vs Ethereum",
+    "url": "/crypto/bitcoin-vs-ethereum/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Different purposes, different investment cases.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "What Is a Bitcoin Halving",
+    "url": "/crypto/bitcoin-halving/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "The most important supply event in crypto and why price moves after.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Stablecoins Explained",
+    "url": "/crypto/stablecoins/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "The dollar bills of crypto. What they are and why they matter.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Should You Pay Off Debt or Invest?",
+    "url": "/money/debt-vs-invest/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "A simple framework that gives you the answer.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Is Renting Throwing Money Away?",
+    "url": "/money/renting-vs-buying/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The hidden costs of homeownership that change the math.",
+    "readTime": "9 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Emergency Fund: How Much You Need",
+    "url": "/money/emergency-fund/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The boring foundation that everything else is built on.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Negotiate Medical Bills",
+    "url": "/money/negotiate-medical-bills/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "A 15-minute phone call that can save you thousands.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Best High-Yield Savings Accounts",
+    "url": "/money/high-yield-savings/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "Stop earning 0.01%. Move your cash in 10 minutes.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Create a Budget",
+    "url": "/money/budgeting-guide/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "Two methods that actually work. 10-minute setup.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "When to Refinance Your Mortgage",
+    "url": "/money/refinancing-mortgage/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The break-even math that tells you everything.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Side Hustles That Actually Pay",
+    "url": "/money/side-hustles/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "Realistic income breakdown by time and skill level.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Credit Card vs Debit Card",
+    "url": "/money/credit-card-vs-debit/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "When to use each and the one rule for free money.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How Insurance Actually Works",
+    "url": "/money/how-insurance-works/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "What you're overpaying for and what you actually need.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Build Credit From Scratch",
+    "url": "/money/build-credit/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "No credit history? Here's the 12-month playbook to 700+.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Tax Brackets Explained",
+    "url": "/money/tax-brackets/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "You're not losing as much as you think. Here's how they work.",
+    "readTime": "6 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How to Save for a Down Payment",
+    "url": "/money/save-down-payment/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The strategy that gets you to your number faster than you think.",
+    "readTime": "7 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "Student Loan Repayment Strategies",
+    "url": "/money/student-loans/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "Standard, IDR, PSLF, refinancing — which saves you the most.",
+    "readTime": "8 min",
+    "date": "2026-05-29"
+  },
+  {
+    "title": "How Car Dealerships Actually Make Money",
+    "url": "/cars/how-dealerships-make-money/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "The sticker price is the thinnest margin. Here's where the real money comes from.",
+    "readTime": "8 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "Dealership vs Bank Financing",
+    "url": "/cars/dealership-vs-bank-financing/",
+    "category": "Car Buying",
+    "tag": "tag-f",
+    "desc": "The dealer's rate isn't always worse. Here's when each side wins.",
+    "readTime": "7 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "Target-Date Funds vs Index Funds",
+    "url": "/investing/target-date-vs-index-funds/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "5x the fees for worse performance. Here's what I moved into.",
+    "readTime": "10 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "Open a 529 Before Your Baby Is Born",
+    "url": "/investing/open-529-before-baby-born/",
+    "category": "Investing",
+    "tag": "tag-inv",
+    "desc": "The trick to starting before the birth certificate exists.",
+    "readTime": "6 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "How to Set Up a Bitcoin Sell Ladder",
+    "url": "/crypto/bitcoin-sell-ladder/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "Take profits systematically without timing the top.",
+    "readTime": "9 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "BTC Weekly — May 28, 2026",
+    "url": "/crypto/btc-weekly-may-28-2026/",
+    "category": "Crypto",
+    "tag": "tag-cry",
+    "desc": "ETF outflows, Strategy pauses, derivatives stay cool.",
+    "readTime": "7 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "How Much Car Can You Actually Afford?",
+    "url": "/money/how-much-car-can-you-afford/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "The real formula including what the 20/4/10 rule leaves out.",
+    "readTime": "7 min",
+    "date": "2026-05-28"
+  },
+  {
+    "title": "Credit Score Explained",
+    "url": "/money/credit-score-explained/",
+    "category": "Money Moves",
+    "tag": "tag-mon",
+    "desc": "What actually moves the number, and which advice is wrong.",
+    "readTime": "8 min",
+    "date": "2026-05-28"
+  }
+]
