@@ -172,44 +172,67 @@
     </a>
 </div>
 <div class="section-bar"><h2>Latest Articles</h2></div>
-<div class="bento">
-    <a href="/investing/target-date-vs-index-funds/" class="bento-card span-2">
-        <span class="tag tag-inv">Investing</span>
-        <h3>Target-Date Funds vs Index Funds: Why I Switched</h3>
-        <p>I was paying 5x the fees for worse performance. Here's exactly what I moved my 401(k) into, why, and how you can do the same thing in an afternoon.</p>
-        <div class="meta">10 min read</div>
-    </a>
-    <a href="/crypto/bitcoin-sell-ladder/" class="bento-card">
-        <span class="tag tag-cry">Crypto</span>
-        <h3>How to Set Up a Bitcoin Sell Ladder</h3>
-        <p>Take profits on the way up without trying to time the top.</p>
-        <div class="meta">9 min read</div>
-    </a>
-    <a href="/cars/dealership-vs-bank-financing/" class="bento-card">
+<div class="bento" id="latest-articles">
+    <a href="/cars/dealer-add-ons/" class="bento-card span-2">
         <span class="tag tag-f">Car Buying</span>
-        <h3>Dealership vs Bank Financing</h3>
-        <p>The dealer's rate isn't always worse. Here's when each side wins.</p>
+        <h3>Dealer Add-Ons to Always Refuse</h3>
+        <p>The F&amp;I menu is mostly margin. What to wave off, and the 2 worth keeping.</p>
         <div class="meta">7 min read</div>
     </a>
-    <a href="/investing/open-529-before-baby-born/" class="bento-card span-2">
-        <span class="tag tag-inv">Investing</span>
-        <h3>How to Open a 529 Before Your Baby Is Born</h3>
-        <p>You don't need a Social Security number to start saving for college. Here's the trick to getting a head start before the birth certificate even exists.</p>
+    <a href="/cars/monthly-payment-trap/" class="bento-card">
+        <span class="tag tag-f">Car Buying</span>
+        <h3>Stop Negotiating the Monthly Payment</h3>
+        <p>It hides four numbers the dealer can move against you. Negotiate these instead.</p>
+        <div class="meta">7 min read</div>
+    </a>
+    <a href="/cars/out-the-door-price/" class="bento-card">
+        <span class="tag tag-f">Car Buying</span>
+        <h3>Out-the-Door Price: The Only Number That Matters</h3>
+        <p>Every other car number is noise. This is the one that decides what you pay.</p>
         <div class="meta">6 min read</div>
     </a>
-    <a href="/money/how-much-car-can-you-afford/" class="bento-card">
-        <span class="tag tag-mon">Money Moves</span>
-        <h3>How Much Car Can You Actually Afford?</h3>
-        <p>The real formula including what the 20/4/10 rule leaves out.</p>
-        <div class="meta">7 min read</div>
-    </a>
-    <a href="/money/credit-score-explained/" class="bento-card span-2">
-        <span class="tag tag-mon">Money Moves</span>
-        <h3>Credit Score Explained: What Actually Moves the Number</h3>
-        <p>Your credit score isn't random. Here's exactly what goes into it, what moves it up, what tanks it, and which common advice is actually wrong.</p>
+    <a href="/investing/order-of-operations/" class="bento-card span-2">
+        <span class="tag tag-inv">Investing</span>
+        <h3>The Order of Operations</h3>
+        <p>Where every extra dollar should go first, ranked by guaranteed return.</p>
         <div class="meta">8 min read</div>
     </a>
+    <a href="/investing/hsa-retirement/" class="bento-card">
+        <span class="tag tag-inv">Investing</span>
+        <h3>The HSA Retirement Hack</h3>
+        <p>The only triple-tax-free account there is &mdash; and almost nobody uses it right.</p>
+        <div class="meta">7 min read</div>
+    </a>
+    <a href="/crypto/btc-weekly-jun-2-2026/" class="bento-card">
+        <span class="tag tag-cry">Crypto</span>
+        <h3>BTC Weekly — June 2, 2026</h3>
+        <p>The $70K line breaks, ETF outflow streak hits 10 days, leverage flushed.</p>
+        <div class="meta">6 min read</div>
+    </a>
 </div>
+<script>
+/* Latest Articles: auto-render newest from /data/articles.json (falls back to static cards) */
+(function(){
+  fetch('/data/articles.json', {cache:'no-cache'})
+    .then(function(r){ if(!r.ok) throw new Error('x'); return r.json(); })
+    .then(function(list){
+      if(!Array.isArray(list) || !list.length) return;
+      list.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+      var html = list.slice(0,6).map(function(a,i){
+        var span = (i % 3 === 0) ? ' span-2' : '';
+        return '<a href="'+a.url+'" class="bento-card'+span+'">'
+             + '<span class="tag '+a.tag+'">'+a.category+'</span>'
+             + '<h3>'+a.title+'</h3>'
+             + '<p>'+a.desc+'</p>'
+             + '<div class="meta">'+a.readTime+' read</div>'
+             + '</a>';
+      }).join('');
+      var el = document.getElementById('latest-articles');
+      if(el) el.innerHTML = html;
+    })
+    .catch(function(){ /* keep static fallback cards */ });
+})();
+</script>
 <footer>
     <span>© 2026 Vrynt. All rights reserved.</span>
     <div>
