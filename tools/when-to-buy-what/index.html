@@ -24,6 +24,7 @@
 .grade-good{color:var(--green)}.grade-warn{color:var(--accent)}.grade-bad{color:#f87171}
 .verdict{margin-top:.9rem;padding:1rem 1.25rem;border-radius:8px;font-size:.88rem;font-weight:500;line-height:1.55}
 .verdict strong{display:block;margin-bottom:.2rem}
+.verdict .exl{display:block;margin-top:.5rem;font-size:.8rem;font-weight:400;opacity:.85}
 .verdict-good{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
 .verdict-warn{background:rgba(255,107,53,.1);color:var(--accent);border:1px solid rgba(255,107,53,.2)}
 .verdict-bad{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
@@ -79,6 +80,8 @@ var NAMES={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",C
 var RLABEL={snow:"Snow &amp; Salt Belt",gulf:"Gulf &amp; Hurricane Coast",desert:"Desert Heat",west:"West Coast &amp; Mild",mid:"Mid-South &amp; Mixed"};
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var VLABEL={conv:"Convertible / sports car",awd:"AWD SUV / crossover",truck:"Pickup truck",sedan:"Sedan / commuter",ev:"EV / hybrid",van:"Minivan",moto:"Motorcycle"};
+var EX={conv:"Mazda MX-5 Miata, Ford Mustang convertible, Chevy Corvette, BMW 4 Series droptop",awd:"Toyota RAV4, Honda CR-V, Subaru Outback & Forester, Toyota 4Runner, Jeep Grand Cherokee",truck:"Ram 1500, Ford F-150, Chevy Silverado, Toyota Tacoma & Tundra",sedan:"Toyota Camry & Corolla, Honda Accord & Civic, Hyundai Sonata & Elantra",ev:"Tesla Model 3 & Y, Hyundai Ioniq 5, Ford Mustang Mach-E — plus whatever is stacked deepest on local lots",van:"Toyota Sienna, Honda Odyssey, Chrysler Pacifica, Kia Carnival",moto:"Harley cruisers, Honda & Yamaha sportbikes, adventure bikes — seasonality hits them all"};
+var Y=(new Date()).getFullYear();
 
 function verdict(v,r,m){
   var s,t;
@@ -126,19 +129,20 @@ function verdict(v,r,m){
     else if(m>=3&&m<=5){s="bad";t="First warm weekend = every bike on the lot has an audience. Spring is peak motorcycle pricing. Patience pays double here.";}
     else{s="warn";t="Season's cooling. Prices improve from late summer into winter — decent now, best in the cold months.";}
   }
-  return {s:s,t:t,label:VLABEL[v]};
+  return {s:s,t:t,label:VLABEL[v],e:EX[v]};
 }
 
 function plays(m){
   var p=[["Month-end pressure","The last 3&ndash;4 days of any month are when managers stretch to hit quota. Same car, same store, different urgency."]];
   if(m===12)p.push(["December is prime time","Year-end targets + outgoing model-year clearance + holiday events + salespeople chasing annual bonuses. The best overall month of the year, especially the last week."]);
   if(m===3||m===6||m===9)p.push(["Quarter-end stack","This is a quarter-end month — quota pressure stacks on top of month-end. The final week is your friend."]);
-  if(m>=8&&m<=11)p.push(["Model-year closeout","Next year's models are arriving and factories pay dealers to clear outgoing-year units. Ask specifically: \u201Cwhat outgoing-year inventory are you trying to move?\u201D"]);
+  if(m>=8&&m<=11)p.push(["Model-year closeout","The "+(Y+1)+" models are arriving and factories pay dealers to clear outgoing "+Y+" units. Ask specifically: \u201Cwhat "+Y+" inventory are you trying to move?\u201D"]);
   if(m===3||m===4)p.push(["Tax-refund headwind","Refund checks fill showrooms in March&ndash;April, and busy desks hold firmer. If you can wait until May, leverage improves."]);
   if(m===11)p.push(["Black Friday","It's become a real car-sales event — legit discounts, but December still beats it if you can hold out a few weeks."]);
   if(m===5)p.push(["Memorial Day event","One of the year's bigger factory promo weekends — real incentives, crowded stores. Go with numbers ready."]);
   if(m===7)p.push(["July 4th + summer sell-down","Holiday event pricing, and stores begin clearing space for next model year."]);
   if(m===9)p.push(["Labor Day","Kicks off the serious closeout stretch — a strong event weekend."]);
+  if(m>=1&&m<=3)p.push(["Leftover-year bait","Any brand-new "+(Y-1)+" units still on the lot are the most motivated metal in the building — old-model-year inventory costs the dealer money every day it sits."]);
   if(m===1||m===2)p.push(["The post-holiday lull","Dead showrooms in Jan&ndash;Feb mean quiet desks — and quiet desks negotiate. Low inventory pressure, but high attention on you."]);
   return p;
 }
@@ -160,14 +164,15 @@ function render(){
   if(v!=="all"){
     var x=verdict(v,r,m), g=GRADES[x.s];
     h+='<div class="result-big '+g[1]+'">'+g[0]+'</div>';
-    h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'</div>';
+    h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'<span class="exl">Think: '+x.e+'</span></div>';
   } else {
     var order=["conv","awd","truck","sedan","ev","van","moto"], rank={good:0,warn:1,bad:2};
     var list=order.map(function(k){return verdict(k,r,m);}).sort(function(a,b){return rank[a.s]-rank[b.s];});
     h+='<div class="result-big" style="font-size:1.3rem;color:var(--text)">The board this month:</div>';
-    list.forEach(function(x){h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'</div>';});
+    list.forEach(function(x){h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'<span class="exl">Think: '+x.e+'</span></div>';});
   }
   var pl=plays(m);
+  if(v!=="all"&&(m>=8||m<=3)){var ay=(m>=8)?Y:(Y-1);var fx=EX[v].split(",").slice(0,2).join(",");pl.unshift(["The exact ask","Walk in and try: \u201CWhat leftover "+ay+" "+fx+" inventory do you need gone?\u201D Naming the year and the model tells the desk you know the game."]);}
   h+='<div class="plays">';
   pl.forEach(function(p){h+='<div class="play-row"><span class="k">'+p[0]+'</span>'+p[1]+'</div>';});
   h+='</div>';
@@ -175,6 +180,7 @@ function render(){
   h+='<div class="regiontip"><span class="k">'+tip[0]+'</span>'+tip[1]+'</div>';
   out.innerHTML=h;
 }
+
 var ss=document.getElementById("state");
 Object.keys(NAMES).sort(function(a,b){return NAMES[a]<NAMES[b]?-1:1;}).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=NAMES[k];ss.appendChild(o);});
 var ms=document.getElementById("month");
