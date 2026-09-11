@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>When to Buy What: The Car Timing Tool | Vrynt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.calc-container{max-width:800px;margin:2rem auto 4rem;padding:0 2rem}
+.calc-container h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.3rem);letter-spacing:-1px;margin-bottom:.5rem}
+.subtitle{color:var(--dim);font-size:1rem;margin-bottom:2.5rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:2rem;margin-bottom:2rem}
+.input-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;align-self:start}
+.input-section h2{font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
+.field{margin-bottom:1.25rem}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:.82rem;font-weight:500;color:var(--dim);margin-bottom:.35rem}
+.field select{width:100%;padding:.65rem .85rem;border:1px solid var(--border);border-radius:8px;font-size:.95rem;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text)}
+.field select:focus{outline:none;border-color:var(--accent)}
+.field select option{background:var(--bg-card);color:var(--text)}
+.results-section{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem}
+.results-section h2{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1.25rem;color:var(--dim)}
+.where-line{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--dim);margin-bottom:1rem}
+.result-big{font-family:'Space Mono',monospace;font-weight:700;font-size:1.9rem;letter-spacing:-1px;margin-bottom:1.25rem}
+.grade-good{color:var(--green)}.grade-warn{color:var(--accent)}.grade-bad{color:#f87171}
+.verdict{margin-top:.9rem;padding:1rem 1.25rem;border-radius:8px;font-size:.88rem;font-weight:500;line-height:1.55}
+.verdict strong{display:block;margin-bottom:.2rem}
+.verdict-good{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.verdict-warn{background:rgba(255,107,53,.1);color:var(--accent);border:1px solid rgba(255,107,53,.2)}
+.verdict-bad{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+.plays{margin-top:1.75rem}
+.play-row{padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.86rem;color:var(--text);line-height:1.55}
+.play-row:last-child{border-bottom:none}
+.play-row .k{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.15rem}
+.regiontip{margin-top:1.75rem;padding:1rem 1.25rem;border-radius:8px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);color:var(--text);font-size:.86rem;line-height:1.6}
+.regiontip .k{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue,#60A5FA);display:block;margin-bottom:.25rem}
+.howworks{margin-top:3rem;border-top:1px solid var(--border);padding-top:2rem}
+.howworks h2{font-size:1.15rem;font-weight:700;margin-bottom:.75rem}
+.howworks p{color:var(--dim);font-size:.92rem;line-height:1.7;margin-bottom:1rem}
+.cta-link{display:inline-block;margin-top:.5rem;margin-right:1.5rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+@media(max-width:700px){.calc-grid{grid-template-columns:1fr}}
+</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVK5X0S6F"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BWVK5X0S6F");</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9982720627756863" crossorigin="anonymous"></script></head><body>
+<div class="progress-bar"></div><nav><a href="/" class="logo">vry<span>nt</span></a><button class="menu-toggle">☰</button><ul class="nav-links"><li><a href="/cars/">Car Buying</a></li><li><a href="/investing/">Investing</a></li><li><a href="/crypto/">Crypto</a></li><li><a href="/money/">Money Moves</a></li><li><a href="/tools/car-affordability-calculator/">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="calc-container">
+    <h1>When to Buy What</h1>
+    <p class="subtitle">Your state + the month &rarr; which vehicles are <strong>deals right now</strong>, which are traps, and the timing plays dealers hope you miss. Built on how demand actually moves through the year &mdash; by someone who works the desk.</p>
+
+    <div class="calc-grid">
+        <div class="input-section">
+            <h2>Your situation</h2>
+            <div class="field"><label for="state">Your state</label><select id="state"><option value="">Pick your state&hellip;</option></select></div>
+            <div class="field"><label for="month">Month you're buying</label><select id="month"></select></div>
+            <div class="field"><label for="veh">What are you shopping for?</label><select id="veh">
+                <option value="all">Not sure — show me everything</option>
+                <option value="conv">Convertible / sports car</option>
+                <option value="awd">AWD SUV / crossover</option>
+                <option value="truck">Pickup truck</option>
+                <option value="sedan">Sedan / commuter car</option>
+                <option value="ev">EV / hybrid</option>
+                <option value="van">Minivan</option>
+                <option value="moto">Motorcycle</option>
+            </select></div>
+        </div>
+        <div class="results-section"><h2>The Read</h2><div id="out"><p style="color:var(--dim);font-size:.9rem">Pick your state and this fills in.</p></div></div>
+    </div>
+
+    <div class="howworks">
+        <h2>How this works</h2>
+        <p>Car prices aren't just about the car — they're about who else wants it that month. Convertibles are cheapest when there's snow on the ground. AWD costs a premium the week before the first storm and goes soft in July when nobody's thinking about winter. Dealers get desperate at month-end, quarter-end, and especially year-end, and factories pay them to clear outgoing model years every fall. None of this is a secret inside the store — it's just rarely explained outside it.</p>
+        <p>This tool maps your state to its climate reality (salt belt, hurricane coast, desert heat, mild coast) and crosses it with the month you're buying, so the advice fits your market — not a generic national average.</p>
+        <a class="cta-link" href="/cars/best-time-to-buy/">The best time of year to buy &rarr;</a>
+        <a class="cta-link" href="/cars/how-dealerships-make-money/">How dealerships actually make money &rarr;</a>
+        <a class="cta-link" href="/cars/out-the-door-price/">The only number that matters &rarr;</a>
+    </div>
+</div>
+<script>
+(function(){
+var STATES={AL:"gulf",AK:"snow",AZ:"desert",AR:"mid",CA:"west",CO:"snow",CT:"snow",DC:"mid",DE:"mid",FL:"gulf",GA:"gulf",HI:"west",ID:"snow",IL:"snow",IN:"snow",IA:"snow",KS:"mid",KY:"mid",LA:"gulf",ME:"snow",MD:"mid",MA:"snow",MI:"snow",MN:"snow",MS:"gulf",MO:"mid",MT:"snow",NE:"snow",NV:"desert",NH:"snow",NJ:"snow",NM:"desert",NY:"snow",NC:"gulf",ND:"snow",OH:"snow",OK:"mid",OR:"west",PA:"snow",RI:"snow",SC:"gulf",SD:"snow",TN:"mid",TX:"gulf",UT:"snow",VT:"snow",VA:"mid",WA:"west",WV:"snow",WI:"snow",WY:"snow"};
+var NAMES={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DC:"Washington DC",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+var RLABEL={snow:"Snow &amp; Salt Belt",gulf:"Gulf &amp; Hurricane Coast",desert:"Desert Heat",west:"West Coast &amp; Mild",mid:"Mid-South &amp; Mixed"};
+var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var VLABEL={conv:"Convertible / sports car",awd:"AWD SUV / crossover",truck:"Pickup truck",sedan:"Sedan / commuter",ev:"EV / hybrid",van:"Minivan",moto:"Motorcycle"};
+
+function verdict(v,r,m){
+  var s,t;
+  if(v==="conv"){
+    if(m>=11||m<=2){s="good";t=(r==="snow")?"Rock-bottom season. Nobody in the salt belt wants a droptop in "+MONTHS[m-1]+" — dealers will deal just to clear lot space. This is THE window.":(r==="gulf"||r==="desert"||r==="west")?"Winter softens convertible demand even in warm states — the national market cools, and the calendar (year-end, closeouts) works for you.":"Cold-month discount is real. Demand is asleep; your leverage is awake.";}
+    else if(m>=5&&m<=8){s="bad";t="Peak sun, peak demand, peak price. Every convertible on the lot has three other buyers thinking about it. If you can wait until fall, you'll be paid for your patience.";}
+    else if(m===3||m===4){s="warn";t="Prices climb as the weather warms — the winter discount is evaporating week by week. If you're buying, sooner beats later.";}
+    else{s="warn";t="Prices are starting their seasonal slide and improve every month from here into January. Decent now, better soon.";}
+  }
+  else if(v==="awd"){
+    if(r==="snow"){
+      if(m>=5&&m<=8){s="good";t="Counter-seasonal gold. Nobody's thinking about snow in "+MONTHS[m-1]+" — this is when AWD is cheapest in your region all year. Buy winter capability in shorts weather.";}
+      else if(m===9){s="warn";t="Prices are firming as winter approaches. Buy right now before the first forecast snowstorm — or commit to waiting until spring. The middle is where you overpay.";}
+      else if(m>=10||m===12||m===11){s="bad";t="Pre-winter demand spike. You're bidding against everyone who waited for the first storm to realize they need AWD. The premium is real — if you can run the winter with what you have, spring pricing is much kinder.";}
+      else if(m===1||m===2){s="warn";t="Still winter-priced, but softening. Each week toward spring pulls AWD prices down in the snow belt.";}
+      else{s="good";t="Post-winter softening. Demand for AWD collapses as the snow melts — solid window, and it gets better into summer.";}
+    } else {
+      s=(m===12||(m>=8&&m<=11))?"good":"warn";
+      t="Outside the snow belt, AWD demand tracks the calendar more than the weather. Your leverage windows are the classics: model-year closeouts (late summer&ndash;fall) and December year-end."+(s==="good"?" You're in one now.":"");
+    }
+  }
+  else if(v==="truck"){
+    if(m===12){s="good";t="December is the one month truck pricing genuinely bends — year-end events plus outgoing model-year clearance. Trucks hold value the rest of the year, so this window matters.";}
+    else if(m>=9&&m<=11){s="good";t="Model-year closeout season: factories support dealers to clear outgoing-year trucks while next year's land. Ask specifically about outgoing-year inventory.";}
+    else if(m>=3&&m<=5){s="warn";t="Spring is peak truck demand — construction, landscaping, and tax-refund money all show up at once. Timing won't save you much; negotiate the out-the-door price hard instead.";}
+    else{s="warn";t="Trucks are the least seasonal thing on the lot — steady demand, strong values. Your leverage is calendar-based: month-end, quarter-end, and holiday sale events.";}
+  }
+  else if(v==="sedan"){
+    if(m===12||(m>=8&&m<=11)){s="good";t="Sedans barely move with the seasons, so the calendar is everything — and you're in the good part: closeout season and/or year-end, when factory support and quotas do the discounting for you.";}
+    else if(m===3||m===4){s="warn";t="Tax-refund season: busy showrooms hold firmer on price. Sedans are always negotiable, but your leverage improves once refund money dries up in May.";}
+    else{s="warn";t="No seasonal edge either way — sedans are steady. Use month-end/quarter-end pressure and shop multiple stores on the out-the-door number.";}
+  }
+  else if(v==="ev"){
+    var extra=(r==="snow")?" One region-specific must: cold cuts EV range meaningfully — if you can, test-drive in winter and scrutinize the battery warranty.":(r==="desert")?" One region-specific must: heat is the battery's true enemy — on a used EV, ask for a battery health report before anything else.":"";
+    if(m===12||(m>=9&&m<=11)){s="good";t="EV pricing swings more with inventory and incentives than the weather — and year-end/closeout season is when both tilt your way. Dealers clear EV inventory aggressively when targets loom."+extra;}
+    else{s="warn";t="EV deals track inventory gluts and incentive cycles more than the calendar — they can appear any month. Watch for stacked manufacturer incentives, and always compare lease vs. buy on an EV."+extra;}
+  }
+  else if(v==="van"){
+    if(m>=3&&m<=5){s="bad";t="Family road-trip season is coming and every minivan buyer knows it. Spring is the demand peak — wait for fall if you can.";}
+    else if(m>=9||m===1||m===2){s="good";t="Post-summer softness: vacation season's over, demand cools, and closeout/year-end pricing stacks on top. This is the minivan window.";}
+    else{s="warn";t="Mid-summer is neutral — the spring rush is fading but fall softness hasn't landed. Wait a couple months if you're flexible.";}
+  }
+  else if(v==="moto"){
+    if(m>=11||m<=2){s="good";t=(r==="snow")?"Dealers hate carrying bikes through a salt-belt winter — floor-plan costs eat them alive. Cold months are the cheapest time to buy a motorcycle, full stop.":"Winter is the soft season for bikes everywhere — less riding, less demand, more deal.";}
+    else if(m>=3&&m<=5){s="bad";t="First warm weekend = every bike on the lot has an audience. Spring is peak motorcycle pricing. Patience pays double here.";}
+    else{s="warn";t="Season's cooling. Prices improve from late summer into winter — decent now, best in the cold months.";}
+  }
+  return {s:s,t:t,label:VLABEL[v]};
+}
+
+function plays(m){
+  var p=[["Month-end pressure","The last 3&ndash;4 days of any month are when managers stretch to hit quota. Same car, same store, different urgency."]];
+  if(m===12)p.push(["December is prime time","Year-end targets + outgoing model-year clearance + holiday events + salespeople chasing annual bonuses. The best overall month of the year, especially the last week."]);
+  if(m===3||m===6||m===9)p.push(["Quarter-end stack","This is a quarter-end month — quota pressure stacks on top of month-end. The final week is your friend."]);
+  if(m>=8&&m<=11)p.push(["Model-year closeout","Next year's models are arriving and factories pay dealers to clear outgoing-year units. Ask specifically: \u201Cwhat outgoing-year inventory are you trying to move?\u201D"]);
+  if(m===3||m===4)p.push(["Tax-refund headwind","Refund checks fill showrooms in March&ndash;April, and busy desks hold firmer. If you can wait until May, leverage improves."]);
+  if(m===11)p.push(["Black Friday","It's become a real car-sales event — legit discounts, but December still beats it if you can hold out a few weeks."]);
+  if(m===5)p.push(["Memorial Day event","One of the year's bigger factory promo weekends — real incentives, crowded stores. Go with numbers ready."]);
+  if(m===7)p.push(["July 4th + summer sell-down","Holiday event pricing, and stores begin clearing space for next model year."]);
+  if(m===9)p.push(["Labor Day","Kicks off the serious closeout stretch — a strong event weekend."]);
+  if(m===1||m===2)p.push(["The post-holiday lull","Dead showrooms in Jan&ndash;Feb mean quiet desks — and quiet desks negotiate. Low inventory pressure, but high attention on you."]);
+  return p;
+}
+
+var TIPS={
+ snow:["Salt-belt used-car rule","Get underneath before you buy. Frame rust, brake lines, fuel lines, subframe — a clean body can hide an ugly underside here. A ~$150 pre-purchase inspection is the best money in the whole deal."],
+ gulf:["Hurricane-coast rule","After storm season (Aug&ndash;Nov), flood cars hit the market — some with washed titles. Run the title history, sniff for must, check for silt under carpets and in the spare-tire well, and test every electronic twice."],
+ desert:["Desert rule","Heat kills cars differently: batteries last ~3 years, AC systems work overtime, sun cooks paint and interiors. Check the battery's date code and run the AC hard on your test drive."],
+ west:["Mild-coast rule","Gentle weather means gentle seasonality — your leverage here is almost all calendar: month-end, quarter-end, December, and model-year closeouts. Work the clock, not the thermometer."],
+ mid:["Mixed-region rule","You get a piece of both worlds: some winter convertible discount, some AWD swing, without the extremes. Calendar plays (December, closeouts, month-end) are your most reliable edge."]
+};
+
+var GRADES={good:["BUY WINDOW","grade-good"],warn:["TIMING PLAY","grade-warn"],bad:["WAIT IF YOU CAN","grade-bad"]};
+
+function render(){
+  var st=document.getElementById("state").value, m=parseInt(document.getElementById("month").value,10), v=document.getElementById("veh").value, out=document.getElementById("out");
+  if(!st){out.innerHTML='<p style="color:var(--dim);font-size:.9rem">Pick your state and this fills in.</p>';return;}
+  var r=STATES[st], h='<div class="where-line">'+NAMES[st]+' &middot; '+RLABEL[r]+' &middot; '+MONTHS[m-1]+'</div>';
+  if(v!=="all"){
+    var x=verdict(v,r,m), g=GRADES[x.s];
+    h+='<div class="result-big '+g[1]+'">'+g[0]+'</div>';
+    h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'</div>';
+  } else {
+    var order=["conv","awd","truck","sedan","ev","van","moto"], rank={good:0,warn:1,bad:2};
+    var list=order.map(function(k){return verdict(k,r,m);}).sort(function(a,b){return rank[a.s]-rank[b.s];});
+    h+='<div class="result-big" style="font-size:1.3rem;color:var(--text)">The board this month:</div>';
+    list.forEach(function(x){h+='<div class="verdict verdict-'+x.s+'"><strong>'+x.label+'</strong>'+x.t+'</div>';});
+  }
+  var pl=plays(m);
+  h+='<div class="plays">';
+  pl.forEach(function(p){h+='<div class="play-row"><span class="k">'+p[0]+'</span>'+p[1]+'</div>';});
+  h+='</div>';
+  var tip=TIPS[r];
+  h+='<div class="regiontip"><span class="k">'+tip[0]+'</span>'+tip[1]+'</div>';
+  out.innerHTML=h;
+}
+
+var
