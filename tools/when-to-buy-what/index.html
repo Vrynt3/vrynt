@@ -175,5 +175,14 @@ function render(){
   h+='<div class="regiontip"><span class="k">'+tip[0]+'</span>'+tip[1]+'</div>';
   out.innerHTML=h;
 }
-
-var
+var ss=document.getElementById("state");
+Object.keys(NAMES).sort(function(a,b){return NAMES[a]<NAMES[b]?-1:1;}).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=NAMES[k];ss.appendChild(o);});
+var ms=document.getElementById("month");
+MONTHS.forEach(function(n,i){var o=document.createElement("option");o.value=i+1;o.textContent=n;ms.appendChild(o);});
+ms.value=(new Date()).getMonth()+1;
+["state","month","veh"].forEach(function(id){document.getElementById(id).addEventListener("change",render);});
+render();
+})();
+</script>
+<footer><span>© 2026 Vrynt. All rights reserved.</span><div><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></div></footer><button class="back-top">↑</button><script src="/js/main.js"></script>
+</body></html>
